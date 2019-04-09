@@ -1,31 +1,29 @@
 <?php
-session_start();
-$conn = new mysqli("localhost", "root", "", "vuelogin");
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-$out = array('error' => false);
-$username = $_POST['username'];
-$password = $_POST['password'];
-if ($username == '') {
-    $out['error'] = true;
-    $out['message'] = "Username is required";
-} else if ($password == '') {
-    $out['error'] = true;
-    $out['message'] = "Password is required";
+require_once "../../core/db/DatabaseConnection.php";
+$pdo = new DatabaseConnection();
+$conn = $pdo->connection();
+$out = array("error" => false);
+$login = $_POST["login"];
+$password = $_POST["password"];
+if ($login == "") {
+	$out["error"] = true;
+	$out["message"] = "Login is required.";
+} else if ($password == "") {
+	$out["error"] = true;
+	$out["message"] = "Password is required.";
 } else {
-    $sql = "select * from user where username='$username' and password='$password'";
-    $query = $conn->query($sql);
-    if ($query->num_rows > 0) {
-        $row = $query->fetch_array();
-        $_SESSION['user'] = $row['userid'];
-        $out['message'] = "Login Successful";
-    } else {
-        $out['error'] = true;
-        $out['message'] = "Login Failed. User not Found";
-    }
+	$sql = "SELECT U.id, U.login FROM user AS U WHERE U.login='$login' AND U.password='$password'";
+	$query = $conn->query($sql);
+	if ($query->rowCount() > 0) {
+		$_SESSION["user"] = $query->fetchObject();
+		$_SESSION["logged_user"] = true;
+		$out["message"] = "Login successful.";
+	} else {
+		$out["error"] = true;
+		$out["message"] = "Login failed. User not found...";
+	}
 }
-$conn->close();
+$pdo->close();
 header("Content-type: application/json");
 echo json_encode($out);
 die();

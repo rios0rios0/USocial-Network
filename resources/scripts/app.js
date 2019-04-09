@@ -13,15 +13,15 @@ var app = new Vue({
 		},
 		checkLogin: function () {
 			var logForm = app.toFormData(app.logDetails);
-			axios.post('login.php', logForm)
+			axios.post("login/login.php", logForm)
 				.then(function (response) {
 					if (response.data.error) {
 						app.errorMessage = response.data.message;
 					} else {
 						app.successMessage = response.data.message;
-						app.logDetails = {username: '', password: ''};
+						app.logDetails = {username: "", password: ""};
 						setTimeout(function () {
-							window.location.href = "success.php";
+							window.location.href = "home/index.php";
 						}, 2000);
 					}
 				});
@@ -34,8 +34,8 @@ var app = new Vue({
 			return form_data;
 		},
 		clearMessage: function () {
-			app.errorMessage = '';
-			app.successMessage = '';
+			app.errorMessage = "";
+			app.successMessage = "";
 		}
 	}
 });

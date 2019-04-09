@@ -1,28 +1,28 @@
 <?php
-session_start();
-$conn = new mysqli("localhost", "root", "", "vuelogin");
-if ($conn->connect_error) {
-	die("Connection failed: " . $conn->connect_error);
+require_once "../../core/db/DatabaseConnection.php";
+require_once "../../core/session/SessionManagement.php";
+$pdo = new DatabaseConnection();
+$conn = $pdo->connection();
+$session = new SessionManagement();
+if (!isset($_SESSION["logged_user"]) || (!$_SESSION["logged_user"])) {
+	header("Location: " . base_url() . "/app/");
 }
-if (!isset($_SESSION['user']) || (trim($_SESSION['user']) == '')) {
-	header('location:index.php');
-}
-$sql = "select * from user where userid='" . $_SESSION['user'] . "'";
+$sql = "SELECT * FROM user AS U WHERE U.login='" . $_SESSION["user"]->login . "'";
 $query = $conn->query($sql);
-$row = $query->fetch_array();
+$object = $query->fetchObject();
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Vue.js Login with PHP/MySQLi</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<title>Unknown Social Network</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
 <div class="container">
-    <div class="jumbotron">
-        <h1 class="text-center">Welcome, <?php echo $row['username']; ?>!</h1>
-        <a href="logout.php" class="btn btn-primary"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
-    </div>
+	<div class="jumbotron">
+		<h1 class="text-center">Welcome, <?= $object->login ?>!</h1>
+		<a href="../login/logout.php" class="btn btn-primary"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+	</div>
 </div>
 </body>
 </html>
