@@ -1,7 +1,8 @@
 <?php
 require_once "../../core/db/DatabaseConnection.php";
-$pdo = new DatabaseConnection();
-$conn = $pdo->connection();
+require_once "../../core/session/SessionManagement.php";
+$conn = DatabaseConnection::getInstance();
+$session = SessionManagement::getInstance();
 $out = array("error" => false);
 $login = $_POST["login"];
 $password = $_POST["password"];
@@ -15,15 +16,15 @@ if ($login == "") {
 	$sql = "SELECT U.id, U.login FROM user AS U WHERE U.login='$login' AND U.password='$password'";
 	$query = $conn->query($sql);
 	if ($query->rowCount() > 0) {
-		$_SESSION["user"] = $query->fetchObject();
-		$_SESSION["logged_user"] = true;
+		$session->user = $query->fetchObject();
+		$session->logged_user = true;
 		$out["message"] = "Login successful.";
 	} else {
 		$out["error"] = true;
 		$out["message"] = "Login failed. User not found...";
 	}
 }
-$pdo->close();
+DatabaseConnection::close();
 header("Content-type: application/json");
 echo json_encode($out);
 die();

@@ -7,7 +7,7 @@ var app = new Vue({
 	},
 	methods: {
 		keymonitor: function (event) {
-			if (event.key == "Enter") {
+			if (event.key === "Enter") {
 				app.checkLogin();
 			}
 		},
@@ -22,7 +22,7 @@ var app = new Vue({
 						app.logDetails = {username: "", password: ""};
 						setTimeout(function () {
 							window.location.href = "home/index.php";
-						}, 2000);
+						}, 750);
 					}
 				});
 		},

@@ -1,5 +1,6 @@
 <?php
+require_once "../../core/routes/RoutesManagement.php";
 require_once "../../core/session/SessionManagement.php";
-$session = new SessionManagement();
+$session = SessionManagement::getInstance();
 $session->destroy();
-header("Location: " . base_u() . "/app/");
+RoutesManagement::redirect("/app/");

@@ -1,8 +1,9 @@
 <?php
+require_once "../core/routes/RoutesManagement.php";
 require_once "../core/session/SessionManagement.php";
-$session = new SessionManagement();
-if (isset($_SESSION["logged_user"]) && $_SESSION["logged_user"]) {
-	header("Location: " . base_url() . "/app/home/");
+$session = SessionManagement::getInstance();
+if ($session->logged()) {
+	RoutesManagement::redirect("/app/home/");
 }
 ?>
 <!DOCTYPE html>

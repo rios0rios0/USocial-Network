@@ -1,13 +1,13 @@
 <?php
 require_once "../../core/db/DatabaseConnection.php";
+require_once "../../core/routes/RoutesManagement.php";
 require_once "../../core/session/SessionManagement.php";
-$pdo = new DatabaseConnection();
-$conn = $pdo->connection();
-$session = new SessionManagement();
-if (!isset($_SESSION["logged_user"]) || (!$_SESSION["logged_user"])) {
-	header("Location: " . base_url() . "/app/");
+$conn = DatabaseConnection::getInstance();
+$session = SessionManagement::getInstance();
+if (!$session->logged()) {
+	RoutesManagement::redirect("/app/");
 }
-$sql = "SELECT * FROM user AS U WHERE U.login='" . $_SESSION["user"]->login . "'";
+$sql = "SELECT * FROM user AS U WHERE U.login='" . $session->user->login . "'";
 $query = $conn->query($sql);
 $object = $query->fetchObject();
 ?>

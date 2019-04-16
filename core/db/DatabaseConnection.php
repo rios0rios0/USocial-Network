@@ -8,33 +8,33 @@
 
 class DatabaseConnection
 {
-	private $db = "social_db";
-	private $host = "localhost";
-	private $user = "root";
-	private $password = "1q2w!Q@W";
-	private $connection = null;
+	private static $db = "social_db";
+	private static $host = "localhost";
+	private static $user = "root";
+	private static $password = "1q2w!Q@W";
+	private static $connection;
 
 	public function __construct()
 	{
+	}
+
+	public static function getInstance()
+	{
 		try {
-			$this->connection = new PDO("mysql:host=$this->host;dbname=$this->db", $this->user, $this->password);
-			$this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			if (is_null($this->connection)) {
-				die();
+			if (is_null(self::$connection)) {
+				self::$connection = new PDO("mysql:host=" . self::$host . ";dbname=" . self::$db, self::$user, self::$password);
+				self::$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			}
+			return self::$connection;
 		} catch (PDOException $e) {
 			error_log("Connection failed: " . $e->getMessage());
+			echo $e->getMessage();
 			die();
 		}
 	}
 
-	public function connection()
+	public static function close()
 	{
-		return $this->connection;
-	}
-
-	public function close()
-	{
-		$this->connection = null;
+		self::$connection = null;
 	}
 }

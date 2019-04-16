@@ -8,12 +8,14 @@
 
 class RoutesManagement
 {
+	private static $app = "USocial-Network";
+
 	public function __construct()
 	{
 	}
 
-	public function redirect($path)
+	public static function redirect($path)
 	{
-		header("Location: " . $_SERVER['SERVER_NAME'] . $path);
+		header("Location: /" . self::$app . $path);
 	}
 }
