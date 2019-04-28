@@ -28,13 +28,13 @@ if ($session->logged()) {
 		<form class="form-inline">
 			<div class="form-group">
 				<label class="sr-only" for="username">Username</label>
-				<input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
+				<input type="text" class="form-control" id="username" name="username" placeholder="Username">
 			</div>
 			<div class="form-group">
 				<label class="sr-only" for="password">Password</label>
 				<input type="password" class="form-control" id="password" name="password" placeholder="Password">
 			</div>
-			<button type="submit" class="btn btn-default">Sign in</button>
+			<button type="submit" class="btn btn-default">Log In</button>
 			<br>
 			<div class="checkbox">
 				<label>
@@ -56,12 +56,12 @@ if ($session->logged()) {
 		</div>
 		<div id="navbar" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="index.html">Home</a></li>
-				<li><a href="members.html">Members</a></li>
+				<li class="active"><a href="index.php">Home</a></li>
+				<li><a href="members">Members</a></li>
 				<li><a href="contact.html">Contact</a></li>
-				<li><a href="groups.html">Groups</a></li>
+				<li><a href="groups">Groups</a></li>
 				<li><a href="photos.html">Photos</a></li>
-				<li><a href="profile.html">Profile</a></li>
+				<li><a href="members/profile.php">Profile</a></li>
 			</ul>
 		</div>
 	</div>
@@ -69,217 +69,39 @@ if ($session->logged()) {
 <section>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-8">
+			<div class="col-md-6"></div>
+			<div class="col-md-6">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title">Wall</h3>
+						<h3 class="panel-title">Sign Up</h3>
 					</div>
 					<div class="panel-body">
-						<form>
+						<form class="form">
+							<div class="row">
+								<div class="form-group col-sm-6">
+									<label class="sr-only" for="first-name">First Name</label>
+									<input type="text" class="form-control" id="first-name" name="first-name" placeholder="First Name">
+								</div>
+								<div class="form-group col-sm-6">
+									<label class="sr-only" for="last-name">Last Name</label>
+									<input type="text" class="form-control" id="last-name" name="last-name" placeholder="Last Name">
+								</div>
+							</div>
 							<div class="form-group">
-								<textarea class="form-control" placeholder="Write on the wall"></textarea>
+								<label class="sr-only" for="email">Email</label>
+								<input type="email" class="form-control" id="email" name="email" placeholder="Your Mail">
 							</div>
-							<button type="submit" class="btn btn-default">Submit</button>
-							<div class="pull-right">
-								<div class="btn-toolbar">
-									<button type="button" class="btn btn-default"><i class="fa fa-pencil"></i>Text
-									</button>
-									<button type="button" class="btn btn-default"><i class="fa fa-file-image-o"></i>Image
-									</button>
-									<button type="button" class="btn btn-default"><i class="fa fa-file-video-o"></i>Video
-									</button>
-								</div>
+							<div class="form-group">
+								<label class="sr-only" for="passwd">Password</label>
+								<input type="password" class="form-control" id="passwd" name="password" placeholder="Your Password">
 							</div>
+							<div class="form-group">
+								<label class="sr-only" for="conf-passwd">Confirm Password</label>
+								<input type="password" class="form-control" id="conf-passwd" name="confirm-password" placeholder="Confirm Password">
+							</div>
+							<button type="submit" class="btn btn-default pull-right">Sign Up</button>
 						</form>
-					</div>
-				</div>
-				<div class="panel panel-default post">
-					<div class="panel-body">
-						<div class="row">
-							<div class="col-sm-2">
-								<a href="profile.html" class="post-avatar thumbnail"><img src="../resources/images/user.png" alt="">
-									<div class="text-center">DevUser1</div>
-								</a>
-								<div class="likes text-center">7 Likes</div>
-							</div>
-							<div class="col-sm-10">
-								<div class="bubble">
-									<div class="pointer">
-										<p>Hey I was wondering if you wanted to go check out the football game later. I heard they are supposed to be really good!</p>
-									</div>
-									<div class="pointer-border"></div>
-								</div>
-								<p class="post-actions"><a href="#">Comment</a> - <a href="#">Like</a> -
-									<a href="#">Follow</a> - <a href="#">Share</a></p>
-								<div class="comment-form">
-									<form class="form-inline">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="enter comment">
-										</div>
-										<button type="submit" class="btn btn-default">Add</button>
-									</form>
-								</div>
-								<div class="clearfix"></div>
-								<div class="comments">
-									<div class="comment">
-										<a href="#" class="comment-avatar pull-left"><img src="../resources/images/user.png" alt=""></a>
-										<div class="comment-text">
-											<p>I am just going to paste in a paragraph, then we will add another clearfix.</p>
-										</div>
-									</div>
-									<div class="clearfix"></div>
-									<div class="comment">
-										<a href="#" class="comment-avatar pull-left"><img src="../resources/images/user.png" alt=""></a>
-										<div class="comment-text">
-											<p>I am just going to paste in a paragraph, then we will add another clearfix.</p>
-										</div>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="panel panel-default post">
-					<div class="panel-body">
-						<div class="row">
-							<div class="col-sm-2">
-								<a href="profile.html" class="post-avatar thumbnail"><img src="../resources/images/user.png" alt="">
-									<div class="text-center">DevUser1</div>
-								</a>
-								<div class="likes text-center">7 Likes</div>
-							</div>
-							<div class="col-sm-10">
-								<div class="bubble">
-									<div class="pointer">
-										<p>Hey I was wondering if you wanted to go check out the football game later. I heard they are supposed to be really good!</p>
-									</div>
-									<div class="pointer-border"></div>
-								</div>
-								<p class="post-actions"><a href="#">Comment</a> - <a href="#">Like</a> -
-									<a href="#">Follow</a> - <a href="#">Share</a></p>
-								<div class="comment-form">
-									<form class="form-inline">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="enter comment">
-										</div>
-										<button type="submit" class="btn btn-default">Add</button>
-									</form>
-								</div>
-								<div class="clearfix"></div>
-								<div class="comments">
-									<div class="comment">
-										<a href="#" class="comment-avatar pull-left"><img src="../resources/images/user.png" alt=""></a>
-										<div class="comment-text">
-											<p>I am just going to paste in a paragraph, then we will add another clearfix.</p>
-										</div>
-									</div>
-									<div class="clearfix"></div>
-									<div class="comment">
-										<a href="#" class="comment-avatar pull-left"><img src="../resources/images/user.png" alt=""></a>
-										<div class="comment-text">
-											<p>I am just going to paste in a paragraph, then we will add another clearfix.</p>
-										</div>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="panel panel-default post">
-					<div class="panel-body">
-						<div class="row">
-							<div class="col-sm-2">
-								<a href="profile.html" class="post-avatar thumbnail"><img src="../resources/images/user.png" alt="">
-									<div class="text-center">DevUser1</div>
-								</a>
-								<div class="likes text-center">7 Likes</div>
-							</div>
-							<div class="col-sm-10">
-								<div class="bubble">
-									<div class="pointer">
-										<p>Hey I was wondering if you wanted to go check out the football game later. I heard they are supposed to be really good!</p>
-									</div>
-									<div class="pointer-border"></div>
-								</div>
-								<p class="post-actions"><a href="#">Comment</a> - <a href="#">Like</a> -
-									<a href="#">Follow</a> - <a href="#">Share</a></p>
-								<div class="comment-form">
-									<form class="form-inline">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="enter comment">
-										</div>
-										<button type="submit" class="btn btn-default">Add</button>
-									</form>
-								</div>
-								<div class="clearfix"></div>
-								<div class="comments">
-									<div class="comment">
-										<a href="#" class="comment-avatar pull-left"><img src="../resources/images/user.png" alt=""></a>
-										<div class="comment-text">
-											<p>I am just going to paste in a paragraph, then we will add another clearfix.</p>
-										</div>
-									</div>
-									<div class="clearfix"></div>
-									<div class="comment">
-										<a href="#" class="comment-avatar pull-left"><img src="../resources/images/user.png" alt=""></a>
-										<div class="comment-text">
-											<p>I am just going to paste in a paragraph, then we will add another clearfix.</p>
-										</div>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="panel panel-default friends">
-					<div class="panel-heading">
-						<h3 class="panel-title">My Friends</h3>
-					</div>
-					<div class="panel-body">
-						<ul>
-							<li><a href="profile.html" class="thumbnail"><img src="../resources/images/user.png" alt=""></a></li>
-							<li><a href="profile.html" class="thumbnail"><img src="../resources/images/user.png" alt=""></a></li>
-							<li><a href="profile.html" class="thumbnail"><img src="../resources/images/user.png" alt=""></a></li>
-							<li><a href="profile.html" class="thumbnail"><img src="../resources/images/user.png" alt=""></a></li>
-							<li><a href="profile.html" class="thumbnail"><img src="../resources/images/user.png" alt=""></a></li>
-							<li><a href="profile.html" class="thumbnail"><img src="../resources/images/user.png" alt=""></a></li>
-							<li><a href="profile.html" class="thumbnail"><img src="../resources/images/user.png" alt=""></a></li>
-							<li><a href="profile.html" class="thumbnail"><img src="../resources/images/user.png" alt=""></a></li>
-							<li><a href="profile.html" class="thumbnail"><img src="../resources/images/user.png" alt=""></a></li>
-						</ul>
 						<div class="clearfix"></div>
-						<a class="btn btn-primary" href="#">View All Friends</a>
-					</div>
-				</div>
-				<div class="panel panel-default groups">
-					<div class="panel-heading">
-						<h3 class="panel-title">Latest Groups</h3>
-					</div>
-					<div class="panel-body">
-						<div class="group-item">
-							<img src="../resources/images/group.png" alt="">
-							<h4><a href="#" class="">Sample Group One</a></h4>
-							<p>This is a paragraph of intro text, or whatever I want to call it.</p>
-						</div>
-						<div class="clearfix"></div>
-						<div class="group-item">
-							<img src="../resources/images/group.png" alt="">
-							<h4><a href="#" class="">Sample Group Two</a></h4>
-							<p>This is a paragraph of intro text, or whatever I want to call it.</p>
-						</div>
-						<div class="clearfix"></div>
-						<div class="group-item">
-							<img src="../resources/images/group.png" alt="">
-							<h4><a href="#" class="">Sample Group Three</a></h4>
-							<p>This is a paragraph of intro text, or whatever I want to call it.</p>
-						</div>
-						<div class="clearfix"></div>
-						<a href="#" class="btn btn-primary">View All Groups</a>
 					</div>
 				</div>
 			</div>
