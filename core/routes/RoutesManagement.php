@@ -9,6 +9,7 @@
 class RoutesManagement
 {
 	private static $app = "USocial-Network";
+	private static $base_url = "/";
 
 	public function __construct()
 	{
@@ -17,5 +18,12 @@ class RoutesManagement
 	public static function redirect($path)
 	{
 		header("Location: /" . self::$app . $path);
+	}
+
+	public static function base_url()
+	{
+		$protocol = ((isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"]) != "off" ? "https" : "http");
+		$server = $_SERVER['SERVER_NAME'];
+		return sprintf("%s://%s%s", $protocol, $server, self::$base_url);
 	}
 }

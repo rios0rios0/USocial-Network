@@ -1,3 +1,4 @@
 <?php
-header("Location: " . base_url() . "/app/");
+require_once "core/routes/RoutesManagement.php";
+RoutesManagement::redirect("/app/controllers/");
 exit;
