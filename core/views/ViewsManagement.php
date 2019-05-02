@@ -8,17 +8,27 @@
 
 class ViewsManagement
 {
+	protected $root;
 	protected $vars = array();
-	protected $layout_default = "layouts/default.php";
+	protected $header = "/app/views/fragments/header.php";
+	protected $footer = "/app/views/fragments/footer.php";
+	protected $content = "";
+	protected $layout = "/app/views/layouts/default.php";
 
 	public function __construct()
 	{
+		$this->root = $_SERVER["DOCUMENT_ROOT"] . "/USocial-Network";
+		$this->header = $this->root . $this->header;
+		$this->footer = $this->root . $this->footer;
+		$this->content = $this->root . $this->content;
+		$this->layout = $this->root . $this->layout;
 	}
 
-	public function setLayout($path)
+	public function set($fragment, $path)
 	{
-		if (file_exists($path)) {
-			$this->layout_default = $path;
+		$abs = $this->root . $path;
+		if (file_exists($abs)) {
+			$this->$fragment = $abs;
 		} else {
 			throw new Exception("No layout file present in path " . $path);
 		}
@@ -26,7 +36,7 @@ class ViewsManagement
 
 	public function render()
 	{
-		include $this->layout_default;
+		include $this->layout;
 	}
 
 	public function __get($name)

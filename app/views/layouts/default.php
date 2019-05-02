@@ -1,8 +1,3 @@
-<?php
-require_once "../../../core/routes/RoutesManagement.php";
-require_once "../../../core/session/SessionManagement.php";
-$session = SessionManagement::getInstance();
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,65 +15,46 @@ $session = SessionManagement::getInstance();
 </head>
 <body>
 <header>
-	<div class="container">
-		<img src="../resources/images/logo.png" class="logo" alt="">
-		<?php
-		if (!$session->logged()) {
-			?>
-			<form class="form-inline">
-				<div class="form-group">
-					<label class="sr-only" for="username">Username</label>
-					<input type="text" class="form-control" id="username" name="username" placeholder="Username">
-				</div>
-				<div class="form-group">
-					<label class="sr-only" for="password">Password</label>
-					<input type="password" class="form-control" id="password" name="password" placeholder="Password">
-				</div>
-				<button type="submit" class="btn btn-default">Log In</button>
-				<br>
-				<div class="checkbox">
-					<label>
-						<input type="checkbox"> Remember me
-					</label>
-				</div>
-			</form>
-			<?php
-		}
-		?>
-	</div>
+	<?php include $this->header ?>
 </header>
-<nav class="navbar navbar-default">
-	<div class="container">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
+<?php
+if ($this->session->logged()) {
+	?>
+	<nav class="navbar navbar-default">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="index.php">Home</a></li>
+					<li><a href="members">Members</a></li>
+					<li><a href="contact.html">Contact</a></li>
+					<li><a href="groups">Groups</a></li>
+					<li><a href="photos.html">Photos</a></li>
+					<li><a href="members/profile.php">Profile</a></li>
+				</ul>
+			</div>
 		</div>
-		<div id="navbar" class="collapse navbar-collapse">
-			<ul class="nav navbar-nav">
-				<li class="active"><a href="index.php">Home</a></li>
-				<li><a href="members">Members</a></li>
-				<li><a href="contact.html">Contact</a></li>
-				<li><a href="groups">Groups</a></li>
-				<li><a href="photos.html">Photos</a></li>
-				<li><a href="members/profile.php">Profile</a></li>
-			</ul>
-		</div>
-	</div>
-</nav>
+	</nav>
+	<?php
+} else {
+	?>
+	<br>
+	<?php
+}
+?>
 <section>
 	<div class="container">
 		<?php include $this->content ?>
 	</div>
 </section>
-<footer>
-	<div class="container">
-		<p>&copy Unknown Social Network, <?= date("Y") ?></p>
-	</div>
-</footer>
+<?php include $this->footer ?>
 </body>
-<script src="../resources/scripts/app.js"></script>
+<script src="<?= RoutesManagement::base_url() ?>resources/scripts/app.js"></script>
 </html>
