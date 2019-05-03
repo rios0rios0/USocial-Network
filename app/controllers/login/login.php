@@ -1,6 +1,6 @@
 <?php
-require_once "../../core/db/DatabaseConnection.php";
-require_once "../../core/session/SessionManagement.php";
+require_once "../../../core/db/DatabaseConnection.php";
+require_once "../../../core/session/SessionManagement.php";
 $conn = DatabaseConnection::getInstance();
 $session = SessionManagement::getInstance();
 $out = array("error" => false);

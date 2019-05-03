@@ -1,27 +1,27 @@
-var app = new Vue({
-	el: '#login',
+var login = new Vue({
+	el: "#login-form",
 	data: {
 		successMessage: "",
 		errorMessage: "",
-		logDetails: {username: '', password: ''},
+		logDetails: {username: "", password: ""},
 	},
 	methods: {
-		keymonitor: function (event) {
+		keyMonitor: function (event) {
 			if (event.key === "Enter") {
-				app.checkLogin();
+				login.login();
 			}
 		},
-		checkLogin: function () {
-			var logForm = app.toFormData(app.logDetails);
+		login: function () {
+			var logForm = login.toFormData(login.logDetails);
 			axios.post("login/login.php", logForm)
 				.then(function (response) {
 					if (response.data.error) {
-						app.errorMessage = response.data.message;
+						login.errorMessage = response.data.message;
 					} else {
-						app.successMessage = response.data.message;
-						app.logDetails = {username: "", password: ""};
+						login.successMessage = response.data.message;
+						login.logDetails = {username: "", password: ""};
 						setTimeout(function () {
-							window.location.href = "home/index.php";
+							window.location.href = "/app/controllers/home/index.php";
 						}, 750);
 					}
 				});
@@ -34,8 +34,8 @@ var app = new Vue({
 			return form_data;
 		},
 		clearMessage: function () {
-			app.errorMessage = "";
-			app.successMessage = "";
+			login.errorMessage = "";
+			login.successMessage = "";
 		}
 	}
 });

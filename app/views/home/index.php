@@ -1,11 +1,3 @@
-<?php
-require_once "../../../core/db/DatabaseConnection.php";
-$conn = DatabaseConnection::getInstance();
-$sql = "SELECT * FROM user AS U WHERE U.login='" . $session->user->login . "'";
-$query = $conn->query($sql);
-$object = $query->fetchObject();
-?>
-<!-- <h1 class="text-center">Welcome, <?= $object->login ?>!</h1> -->
 <div class="row">
 	<div class="col-md-8">
 		<div class="panel panel-default">
@@ -35,7 +27,7 @@ $object = $query->fetchObject();
 			<div class="panel-body">
 				<div class="row">
 					<div class="col-sm-2">
-						<a href="profile.html" class="post-avatar thumbnail"><img src="../resources/images/user.png" alt="">
+						<a href="profile.html" class="post-avatar thumbnail"><img src="<?= RoutesManagement::base_url() ?>resources/images/user.png" alt="">
 							<div class="text-center">DevUser1</div>
 						</a>
 						<div class="likes text-center">7 Likes</div>
@@ -60,14 +52,14 @@ $object = $query->fetchObject();
 						<div class="clearfix"></div>
 						<div class="comments">
 							<div class="comment">
-								<a href="#" class="comment-avatar pull-left"><img src="../resources/images/user.png" alt=""></a>
+								<a href="#" class="comment-avatar pull-left"><img src="<?= RoutesManagement::base_url() ?>resources/images/user.png" alt=""></a>
 								<div class="comment-text">
 									<p>I am just going to paste in a paragraph, then we will add another clearfix.</p>
 								</div>
 							</div>
 							<div class="clearfix"></div>
 							<div class="comment">
-								<a href="#" class="comment-avatar pull-left"><img src="../resources/images/user.png" alt=""></a>
+								<a href="#" class="comment-avatar pull-left"><img src="<?= RoutesManagement::base_url() ?>resources/images/user.png" alt=""></a>
 								<div class="comment-text">
 									<p>I am just going to paste in a paragraph, then we will add another clearfix.</p>
 								</div>
@@ -82,7 +74,7 @@ $object = $query->fetchObject();
 			<div class="panel-body">
 				<div class="row">
 					<div class="col-sm-2">
-						<a href="profile.html" class="post-avatar thumbnail"><img src="../resources/images/user.png" alt="">
+						<a href="profile.html" class="post-avatar thumbnail"><img src="<?= RoutesManagement::base_url() ?>resources/images/user.png" alt="">
 							<div class="text-center">DevUser1</div>
 						</a>
 						<div class="likes text-center">7 Likes</div>
@@ -107,14 +99,14 @@ $object = $query->fetchObject();
 						<div class="clearfix"></div>
 						<div class="comments">
 							<div class="comment">
-								<a href="#" class="comment-avatar pull-left"><img src="../resources/images/user.png" alt=""></a>
+								<a href="#" class="comment-avatar pull-left"><img src="<?= RoutesManagement::base_url() ?>resources/images/user.png" alt=""></a>
 								<div class="comment-text">
 									<p>I am just going to paste in a paragraph, then we will add another clearfix.</p>
 								</div>
 							</div>
 							<div class="clearfix"></div>
 							<div class="comment">
-								<a href="#" class="comment-avatar pull-left"><img src="../resources/images/user.png" alt=""></a>
+								<a href="#" class="comment-avatar pull-left"><img src="<?= RoutesManagement::base_url() ?>resources/images/user.png" alt=""></a>
 								<div class="comment-text">
 									<p>I am just going to paste in a paragraph, then we will add another clearfix.</p>
 								</div>
@@ -129,7 +121,7 @@ $object = $query->fetchObject();
 			<div class="panel-body">
 				<div class="row">
 					<div class="col-sm-2">
-						<a href="profile.html" class="post-avatar thumbnail"><img src="../resources/images/user.png" alt="">
+						<a href="profile.html" class="post-avatar thumbnail"><img src="<?= RoutesManagement::base_url() ?>resources/images/user.png" alt="">
 							<div class="text-center">DevUser1</div>
 						</a>
 						<div class="likes text-center">7 Likes</div>
@@ -154,14 +146,14 @@ $object = $query->fetchObject();
 						<div class="clearfix"></div>
 						<div class="comments">
 							<div class="comment">
-								<a href="#" class="comment-avatar pull-left"><img src="../resources/images/user.png" alt=""></a>
+								<a href="#" class="comment-avatar pull-left"><img src="<?= RoutesManagement::base_url() ?>resources/images/user.png" alt=""></a>
 								<div class="comment-text">
 									<p>I am just going to paste in a paragraph, then we will add another clearfix.</p>
 								</div>
 							</div>
 							<div class="clearfix"></div>
 							<div class="comment">
-								<a href="#" class="comment-avatar pull-left"><img src="../resources/images/user.png" alt=""></a>
+								<a href="#" class="comment-avatar pull-left"><img src="<?= RoutesManagement::base_url() ?>resources/images/user.png" alt=""></a>
 								<div class="comment-text">
 									<p>I am just going to paste in a paragraph, then we will add another clearfix.</p>
 								</div>
@@ -180,23 +172,32 @@ $object = $query->fetchObject();
 			</div>
 			<div class="panel-body">
 				<ul>
-					<li><a href="profile.html" class="thumbnail"><img src="../resources/images/user.png" alt=""></a>
+					<li>
+						<a href="profile.html" class="thumbnail"><img src="<?= RoutesManagement::base_url() ?>resources/images/user.png" alt=""></a>
 					</li>
-					<li><a href="profile.html" class="thumbnail"><img src="../resources/images/user.png" alt=""></a>
+					<li>
+						<a href="profile.html" class="thumbnail"><img src="<?= RoutesManagement::base_url() ?>resources/images/user.png" alt=""></a>
 					</li>
-					<li><a href="profile.html" class="thumbnail"><img src="../resources/images/user.png" alt=""></a>
+					<li>
+						<a href="profile.html" class="thumbnail"><img src="<?= RoutesManagement::base_url() ?>resources/images/user.png" alt=""></a>
 					</li>
-					<li><a href="profile.html" class="thumbnail"><img src="../resources/images/user.png" alt=""></a>
+					<li>
+						<a href="profile.html" class="thumbnail"><img src="<?= RoutesManagement::base_url() ?>resources/images/user.png" alt=""></a>
 					</li>
-					<li><a href="profile.html" class="thumbnail"><img src="../resources/images/user.png" alt=""></a>
+					<li>
+						<a href="profile.html" class="thumbnail"><img src="<?= RoutesManagement::base_url() ?>resources/images/user.png" alt=""></a>
 					</li>
-					<li><a href="profile.html" class="thumbnail"><img src="../resources/images/user.png" alt=""></a>
+					<li>
+						<a href="profile.html" class="thumbnail"><img src="<?= RoutesManagement::base_url() ?>resources/images/user.png" alt=""></a>
 					</li>
-					<li><a href="profile.html" class="thumbnail"><img src="../resources/images/user.png" alt=""></a>
+					<li>
+						<a href="profile.html" class="thumbnail"><img src="<?= RoutesManagement::base_url() ?>resources/images/user.png" alt=""></a>
 					</li>
-					<li><a href="profile.html" class="thumbnail"><img src="../resources/images/user.png" alt=""></a>
+					<li>
+						<a href="profile.html" class="thumbnail"><img src="<?= RoutesManagement::base_url() ?>resources/images/user.png" alt=""></a>
 					</li>
-					<li><a href="profile.html" class="thumbnail"><img src="../resources/images/user.png" alt=""></a>
+					<li>
+						<a href="profile.html" class="thumbnail"><img src="<?= RoutesManagement::base_url() ?>resources/images/user.png" alt=""></a>
 					</li>
 				</ul>
 				<div class="clearfix"></div>
@@ -209,19 +210,19 @@ $object = $query->fetchObject();
 			</div>
 			<div class="panel-body">
 				<div class="group-item">
-					<img src="../resources/images/group.png" alt="">
+					<img src="<?= RoutesManagement::base_url() ?>resources/images/group.png" alt="">
 					<h4><a href="#" class="">Sample Group One</a></h4>
 					<p>This is a paragraph of intro text, or whatever I want to call it.</p>
 				</div>
 				<div class="clearfix"></div>
 				<div class="group-item">
-					<img src="../resources/images/group.png" alt="">
+					<img src="<?= RoutesManagement::base_url() ?>resources/images/group.png" alt="">
 					<h4><a href="#" class="">Sample Group Two</a></h4>
 					<p>This is a paragraph of intro text, or whatever I want to call it.</p>
 				</div>
 				<div class="clearfix"></div>
 				<div class="group-item">
-					<img src="../resources/images/group.png" alt="">
+					<img src="<?= RoutesManagement::base_url() ?>resources/images/group.png" alt="">
 					<h4><a href="#" class="">Sample Group Three</a></h4>
 					<p>This is a paragraph of intro text, or whatever I want to call it.</p>
 				</div>

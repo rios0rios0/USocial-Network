@@ -3,7 +3,11 @@ require_once "../../core/views/ViewsManagement.php";
 require_once "../../core/session/SessionManagement.php";
 require_once "../../core/routes/RoutesManagement.php";
 $session = SessionManagement::getInstance();
-$vm = new ViewsManagement();
-$vm->session = $session;
-$vm->set("content", !$session->logged() ? "/app/views/sign-up/index.php" : "/app/views/home/index.php");
-$vm->render();
+if (!$session->logged()) {
+	$vm = new ViewsManagement();
+	$vm->session = $session;
+	$vm->set("content", "/app/views/login/sign-up.php");
+	$vm->render();
+} else {
+	RoutesManagement::redirect("/app/controllers/home/");
+}

@@ -32,12 +32,11 @@ if ($this->session->logged()) {
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="index.php">Home</a></li>
-					<li><a href="members">Members</a></li>
-					<li><a href="contact.html">Contact</a></li>
-					<li><a href="groups">Groups</a></li>
-					<li><a href="photos.html">Photos</a></li>
-					<li><a href="members/profile.php">Profile</a></li>
+					<li class="active"><a href="<?= RoutesManagement::base_url() ?>">Home</a></li>
+					<li><a href="<?= RoutesManagement::base_url() ?>app/controllers/members">Members</a></li>
+					<li><a href="<?= RoutesManagement::base_url() ?>app/controllers/groups">Groups</a></li>
+					<li><a href="<?= RoutesManagement::base_url() ?>app/controllers/photos">Photos</a></li>
+					<li><a href="<?= RoutesManagement::base_url() ?>app/controllers/members/profile">Profile</a></li>
 				</ul>
 			</div>
 		</div>
@@ -56,5 +55,4 @@ if ($this->session->logged()) {
 </section>
 <?php include $this->footer ?>
 </body>
-<script src="<?= RoutesManagement::base_url() ?>resources/scripts/app.js"></script>
 </html>
