@@ -8,7 +8,7 @@
 
 class DatabaseConnection
 {
-	private static $db = "social_db";
+	private static $db = "usocial";
 	private static $host = "localhost";
 	private static $user = "root";
 	private static $password = "1q2w!Q@W";

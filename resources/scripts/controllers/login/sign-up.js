@@ -8,7 +8,7 @@ var sign_up = new Vue({
 	methods: {
 		keyMonitor: function (event) {
 			if (event.key === "Enter") {
-				sign_up.sign_up();
+				//sign_up.sign_up();
 			}
 		},
 		sign_up: function () {

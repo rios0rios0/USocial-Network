@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Dobble Social Network: Members Page</title>
+	<title>Dobble Social Network: Group Page</title>
 	<!-- Bootstrap core CSS -->
 	<link href="css/bootstrap.css" rel="stylesheet">
 	<!-- Custom styles for this template -->
@@ -47,7 +47,7 @@
 		<div id="navbar" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="index.html">Home</a></li>
-				<li><a href="members.html">Members</a></li>
+				<li><a href="users.html">Users</a></li>
 				<li><a href="contact.html">Contact</a></li>
 				<li><a href="groups.html">Groups</a></li>
 				<li><a href="photos.html">Photos</a></li>
@@ -60,87 +60,42 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8">
-				<div class="members">
-					<h1 class="page-header">Members</h1>
-					<div class="row member-row">
-						<div class="col-md-3">
-							<img src="img/user.png" class="img-thumbnail" alt="">
-							<div class="text-center">
-								SomeUser01
-							</div>
-						</div>
-						<div class="col-md-3">
-							<p><a href="#" class="btn btn-success btn-block"><i class="fa fa-users"></i> Add Friend</a>
-							</p>
-						</div>
-						<div class="col-md-3">
-							<p><a href="#" class="btn btn-default btn-block"><i class="fa fa-envelope"></i> Send Message</a>
-							</p>
-						</div>
-						<div class="col-md-3">
-							<p><a href="#" class="btn btn-primary btn-block"><i class="fa fa-edit"></i> View Profile</a>
-							</p>
-						</div>
+				<div class="groups">
+					<h1 class="page-header">Groups</h1>
+					<div class="group-item">
+						<img src="img/group.png" alt="">
+						<h4><a href="#">Sample Group One</a></h4>
+						<p>Actually we will just write a quick paragraph. This is a sample Dobble social network group.</p>
+						<p>
+							<a href="#" class="btn btn-default">Join Group</a>
+						</p>
 					</div>
-					<div class="row member-row">
-						<div class="col-md-3">
-							<img src="img/user.png" class="img-thumbnail" alt="">
-							<div class="text-center">
-								SomeUser01
-							</div>
-						</div>
-						<div class="col-md-3">
-							<p><a href="#" class="btn btn-success btn-block"><i class="fa fa-users"></i> Add Friend</a>
-							</p>
-						</div>
-						<div class="col-md-3">
-							<p><a href="#" class="btn btn-default btn-block"><i class="fa fa-envelope"></i> Send Message</a>
-							</p>
-						</div>
-						<div class="col-md-3">
-							<p><a href="#" class="btn btn-primary btn-block"><i class="fa fa-edit"></i> View Profile</a>
-							</p>
-						</div>
+					<div class="clearfix"></div>
+					<div class="group-item">
+						<img src="img/group.png" alt="">
+						<h4><a href="#">Sample Group Two</a></h4>
+						<p>Actually we will just write a quick paragraph. This is a sample Dobble social network group.</p>
+						<p>
+							<a href="#" class="btn btn-default">Join Group</a>
+						</p>
 					</div>
-					<div class="row member-row">
-						<div class="col-md-3">
-							<img src="img/user.png" class="img-thumbnail" alt="">
-							<div class="text-center">
-								SomeUser02
-							</div>
-						</div>
-						<div class="col-md-3">
-							<p><a href="#" class="btn btn-success btn-block"><i class="fa fa-users"></i> Add Friend</a>
-							</p>
-						</div>
-						<div class="col-md-3">
-							<p><a href="#" class="btn btn-default btn-block"><i class="fa fa-envelope"></i> Send Message</a>
-							</p>
-						</div>
-						<div class="col-md-3">
-							<p><a href="#" class="btn btn-primary btn-block"><i class="fa fa-edit"></i> View Profile</a>
-							</p>
-						</div>
+					<div class="clearfix"></div>
+					<div class="group-item">
+						<img src="img/group.png" alt="">
+						<h4><a href="#">Sample Group Three</a></h4>
+						<p>Actually we will just write a quick paragraph. This is a sample Dobble social network group.</p>
+						<p>
+							<a href="#" class="btn btn-default">Join Group</a>
+						</p>
 					</div>
-					<div class="row member-row">
-						<div class="col-md-3">
-							<img src="img/user.png" class="img-thumbnail" alt="">
-							<div class="text-center">
-								SomeUser03
-							</div>
-						</div>
-						<div class="col-md-3">
-							<p><a href="#" class="btn btn-success btn-block"><i class="fa fa-users"></i> Add Friend</a>
-							</p>
-						</div>
-						<div class="col-md-3">
-							<p><a href="#" class="btn btn-default btn-block"><i class="fa fa-envelope"></i> Send Message</a>
-							</p>
-						</div>
-						<div class="col-md-3">
-							<p><a href="#" class="btn btn-primary btn-block"><i class="fa fa-edit"></i> View Profile</a>
-							</p>
-						</div>
+					<div class="clearfix"></div>
+					<div class="group-item">
+						<img src="img/group.png" alt="">
+						<h4><a href="#">Sample Group Four</a></h4>
+						<p>Actually we will just write a quick paragraph. This is a sample Dobble social network group.</p>
+						<p>
+							<a href="#" class="btn btn-default">Join Group</a>
+						</p>
 					</div>
 				</div>
 			</div>

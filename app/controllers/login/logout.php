@@ -1,6 +1,10 @@
 <?php
-require_once "../../../core/routes/RoutesManagement.php";
 require_once "../../../core/session/SessionManagement.php";
+require_once "../../../core/routes/RoutesManagement.php";
 $session = SessionManagement::getInstance();
-$session->destroy();
-RoutesManagement::redirect("/app/");
+if ($session->logged()) {
+	$session->destroy();
+	RoutesManagement::redirect("/app/");
+} else {
+	RoutesManagement::redirect("/app/");
+}

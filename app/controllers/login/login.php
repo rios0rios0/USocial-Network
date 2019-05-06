@@ -1,30 +1,35 @@
 <?php
-require_once "../../../core/db/DatabaseConnection.php";
 require_once "../../../core/session/SessionManagement.php";
-$conn = DatabaseConnection::getInstance();
+require_once "../../../core/routes/RoutesManagement.php";
+require_once "../../../core/db/DatabaseConnection.php";
 $session = SessionManagement::getInstance();
-$out = array("error" => false);
-$login = $_POST["login"];
-$password = $_POST["password"];
-if ($login == "") {
-	$out["error"] = true;
-	$out["message"] = "Login is required.";
-} else if ($password == "") {
-	$out["error"] = true;
-	$out["message"] = "Password is required.";
+if ($session->logged()) {
+	RoutesManagement::redirect("/app/controllers/home/");
 } else {
-	$sql = "SELECT U.id, U.login FROM user AS U WHERE U.login='$login' AND U.password='$password'";
-	$query = $conn->query($sql);
-	if ($query->rowCount() > 0) {
-		$session->user = $query->fetchObject();
-		$session->logged_user = true;
-		$out["message"] = "Login successful.";
-	} else {
+	$conn = DatabaseConnection::getInstance();
+	$out = array("error" => false);
+	$username = $_POST["username"];
+	$password = $_POST["password"];
+	if ($username == "") {
 		$out["error"] = true;
-		$out["message"] = "Login failed. User not found...";
+		$out["message"] = "Username is required.";
+	} else if ($password == "") {
+		$out["error"] = true;
+		$out["message"] = "Password is required.";
+	} else {
+		$sql = "SELECT U.id, U.username FROM user AS U WHERE U.username='$username' AND U.password='$password'";
+		$query = $conn->query($sql);
+		if ($query->rowCount() > 0) {
+			$session->user = $query->fetchObject();
+			$session->logged_user = true;
+			$out["message"] = "Login successful.";
+		} else {
+			$out["error"] = true;
+			$out["message"] = "Login failed. User not found...";
+		}
 	}
+	DatabaseConnection::close();
+	header("Content-type: application/json");
+	echo json_encode($out);
+	die();
 }
-DatabaseConnection::close();
-header("Content-type: application/json");
-echo json_encode($out);
-die();

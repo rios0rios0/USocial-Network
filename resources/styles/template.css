@@ -1,24 +1,24 @@
-header{
+header {
 	background-image: linear-gradient(#04519b, #044687 60%, #033769);
-	color:#fff;
+	color: #fff;
 	min-height: 100px;
 	padding-top: 25px;
 }
 
-header form{
-	float:right;
+header form {
+	float: right;
 }
 
-header .logo{
-	float:left;
+header .logo {
+	float: left;
 }
 
-.panel-heading{
-    background-image: linear-gradient(#04519b, #044687 60%, #033769);
-    color: #fff !important;
+.panel-heading {
+	background-image: linear-gradient(#04519b, #044687 60%, #033769);
+	color: #fff !important;
 }
 
-.bubble{
+.bubble {
 	position: relative;
 	width: 580px;
 	min-height: 65px;
@@ -28,8 +28,8 @@ header .logo{
 	border: 1px solid #ccc;
 }
 
-.bubble:after{
-	content:'';
+.bubble:after {
+	content: '';
 	position: absolute;
 	border-style: solid;
 	border-width: 15px 15px 15px 0;
@@ -38,12 +38,12 @@ header .logo{
 	width: 0;
 	z-index: 1;
 	margin-top: -15px;
-	left:-15px;
+	left: -15px;
 	top: 50%;
 }
 
-.bubble:before{
-	content:'';
+.bubble:before {
+	content: '';
 	position: absolute;
 	border-style: solid;
 	border-width: 15px 15px 15px 0;
@@ -52,86 +52,86 @@ header .logo{
 	width: 0;
 	z-index: 0;
 	margin-top: -15px;
-	left:-16px;
+	left: -16px;
 	top: 50%;
 }
 
-.post-actions{
-	margin:5px;
+.post-actions {
+	margin: 5px;
 }
 
-.comment-form .form-group{
+.comment-form .form-group {
 	width: 90%;
 }
 
-.comment{
+.comment {
 	border: 1px solid #ccc;
 	border-radius: 5px;
 	padding: 3px;
 	margin: 5px 0;
 	overflow: auto;
-	width:100%;
-}
-
-.comment-form input[type="text"]{
 	width: 100%;
 }
 
-.comment-avatar img{
+.comment-form input[type="text"] {
+	width: 100%;
+}
+
+.comment-avatar img {
 	width: 40px;
 	margin-right: 5px;
 }
 
-.friends li{
+.friends li {
 	list-style: none;
-	padding:0 5px;
-	display:inline;
-	float:left;
+	padding: 0 5px;
+	display: inline;
+	float: left;
 }
 
-.friends img{
+.friends img {
 	width: 55px;
 }
 
-.groups img{
-	width:80px;
-	float:left;
+.groups img {
+	width: 80px;
+	float: left;
 	margin-right: 15px;
 }
 
-.group-item{
+.group-item {
 	padding-bottom: 10px;
 	margin-bottom: 20px;
 	border-bottom: 1px solid #ccc;
 	overflow: auto;
 }
 
-.profile ul{
+.profile ul {
 	margin-top: 30px;
 }
 
-.profile li{
+.profile li {
 	list-style: none;
 	line-height: 1.9em;
 }
 
-.photos{
+.photos {
 	margin: 0;
 	padding: 0;
 }
 
-.photos li{
+.photos li {
 	list-style: none;
 	float: left;
-	margin:5px;
+	margin: 5px;
 	width: 23%;
 }
 
-.photos img{
-	width:100%;
+.photos img {
+	width: 100%;
 }
 
-footer{
+footer {
 	background: #f4f4f4;
 	height: 90px;
 	color: #04519b;
@@ -142,18 +142,18 @@ footer{
 	border-top: 7px solid #04519b;
 }
 
-.members .member-row{
+.users .user-row {
 	border-bottom: 1px solid #ccc;
 	padding-bottom: 20px;
 	margin-bottom: 20px;
 }
 
-.members img{
+.users img {
 	margin-bottom: 5px;
 }
 
-@media(min-width: 991px){
-  .members p{
-	padding-top: 40px;
+@media (min-width: 991px) {
+	.users p {
+		padding-top: 40px;
 	}
 }

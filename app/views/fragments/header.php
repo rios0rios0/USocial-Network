@@ -3,11 +3,11 @@
 	<?php
 	if (!$this->session->logged()) {
 		?>
-		<form class="form-inline">
+		<form class="form-inline" v-on:submit.prevent="login">
 			<div class="form-group">
 				<label class="sr-only" for="username">Username</label>
 				<input type="text" class="form-control" id="username" name="username" placeholder="Username"
-				       v-model="logDetails.login" v-on:keyup="keyMonitor">
+				       v-model="logDetails.username" v-on:keyup="keyMonitor">
 			</div>
 			<div class="form-group">
 				<label class="sr-only" for="password">Password</label>
@@ -21,22 +21,25 @@
 					<input type="checkbox"> Remember me
 				</label>
 			</div>
+			<div class="alert alert-danger text-center" v-if="errorMessage">
+				<button type="button" class="close" @click="clearMessage();"><span aria-hidden="true">&times;</span>
+				</button>
+				<span class="glyphicon glyphicon-alert"></span> {{ errorMessage }}
+			</div>
+			<div class="alert alert-success text-center" v-if="successMessage">
+				<button type="button" class="close" @click="clearMessage();"><span aria-hidden="true">&times;</span>
+				</button>
+				<span class="glyphicon glyphicon-check"></span> {{ successMessage }}
+			</div>
 		</form>
-		<div class="alert alert-danger text-center" v-if="errorMessage">
-			<button type="button" class="close" @click="clearMessage();"><span aria-hidden="true">&times;</span>
-			</button>
-			<span class="glyphicon glyphicon-alert"></span> {{ errorMessage }}
-		</div>
-		<div class="alert alert-success text-center" v-if="successMessage">
-			<button type="button" class="close" @click="clearMessage();"><span aria-hidden="true">&times;</span>
-			</button>
-			<span class="glyphicon glyphicon-check"></span> {{ successMessage }}
-		</div>
 		<script src="<?= RoutesManagement::base_url() ?>resources/scripts/controllers/login/login.js"></script>
 	<?php
 	} else {
 	?>
-		<div><h1 class="text-center">Welcome, <?= $this->user->login ?>!</h1></div>
+		<div>
+			<h1 class="text-center">Welcome, <?= $this->session->user->username ?>!</h1>
+			<br>
+		</div>
 		<?php
 	}
 	?>

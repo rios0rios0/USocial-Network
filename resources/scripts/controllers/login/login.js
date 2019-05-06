@@ -8,7 +8,7 @@ var login = new Vue({
 	methods: {
 		keyMonitor: function (event) {
 			if (event.key === "Enter") {
-				login.login();
+				//login.login();
 			}
 		},
 		login: function () {
@@ -21,8 +21,8 @@ var login = new Vue({
 						login.successMessage = response.data.message;
 						login.logDetails = {username: "", password: ""};
 						setTimeout(function () {
-							window.location.href = "/app/controllers/home/index.php";
-						}, 750);
+							window.location.href = base_url + "/app/controllers/home/index.php";
+						}, 1000);
 					}
 				});
 		},
