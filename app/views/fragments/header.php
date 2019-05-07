@@ -3,18 +3,18 @@
 	<?php
 	if (!$this->session->logged()) {
 		?>
-		<form class="form-inline" v-on:submit.prevent="login">
+		<form class="form-inline" v-on:submit.prevent>
 			<div class="form-group">
 				<label class="sr-only" for="username">Username</label>
 				<input type="text" class="form-control" id="username" name="username" placeholder="Username"
-				       v-model="logDetails.username" v-on:keyup="keyMonitor">
+				       v-model="logDetails.username">
 			</div>
 			<div class="form-group">
 				<label class="sr-only" for="password">Password</label>
 				<input type="password" class="form-control" id="password" name="password" placeholder="Password"
-				       v-model="logDetails.password" v-on:keyup="keyMonitor">
+				       v-model="logDetails.password">
 			</div>
-			<button type="submit" class="btn btn-default" @click="login();">Log In</button>
+			<button type="submit" class="btn btn-default" @click="login">Log In</button>
 			<br>
 			<div class="checkbox">
 				<label>

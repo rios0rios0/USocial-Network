@@ -13,6 +13,7 @@
 	<script type="text/javascript" src="<?= RoutesManagement::base_url() ?>resources/plugins/bootstrap-3.3.7/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="<?= RoutesManagement::base_url() ?>resources/plugins/vue-2.5.9/package/dist/vue.min.js"></script>
 	<script type="text/javascript" src="<?= RoutesManagement::base_url() ?>resources/plugins/axios-0.12.0/package/dist/axios.min.js"></script>
+	<script type="text/javascript" src="<?= RoutesManagement::base_url() ?>resources/scripts/custom.js"></script>
 	<script type="text/javascript">
 		let base_url = "<?= RoutesManagement::base_url() ?>";
 	</script>
@@ -36,7 +37,7 @@ if ($this->session->logged()) {
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="<?= RoutesManagement::base_url() ?>">Home</a></li>
+					<li><a href="<?= RoutesManagement::base_url() ?>app/controllers/home/index.php">Home</a></li>
 					<li><a href="<?= RoutesManagement::base_url() ?>app/controllers/users/index.php">Profile</a></li>
 					<li><a href="<?= RoutesManagement::base_url() ?>app/controllers/users/list.php">Users</a></li>
 					<li><a href="<?= RoutesManagement::base_url() ?>app/controllers/login/logout.php">Log Out</a></li>

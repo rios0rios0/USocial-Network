@@ -27,6 +27,8 @@ if ($session->logged()) {
 	$vm = new ViewsManagement();
 	$vm->session = $session;
 	$vm->users = $query->fetchAll(PDO::FETCH_CLASS);
+	$vm->set("panel_friends", "/app/views/fragments/panel-friends.php");
+	$vm->set("panel_groups", "/app/views/fragments/panel-groups.php");
 	$vm->set("content", "/app/views/users/list.php");
 	$vm->render();
 } else {

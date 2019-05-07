@@ -6,17 +6,20 @@ var sign_up = new Vue({
 		logDetails: {first_name: "", last_name: "", email: "", password: "", confirm_password: ""},
 	},
 	methods: {
-		keyMonitor: function (event) {
-			if (event.key === "Enter") {
-				//sign_up.sign_up();
-			}
-		},
 		sign_up: function () {
 			axios.post("login/sign-up.php", sign_up.toFormData(sign_up.logDetails))
 				.then(function (response) {
 					if (response.data.error) {
+						sign_up.clearMessage();
+						if (login !== undefined) {
+							login.clearMessage();
+						}
 						sign_up.errorMessage = response.data.message;
 					} else {
+						sign_up.clearMessage();
+						if (login !== undefined) {
+							login.clearMessage();
+						}
 						sign_up.successMessage = response.data.message;
 						sign_up.logDetails = {
 							first_name: "",

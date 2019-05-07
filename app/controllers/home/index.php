@@ -10,6 +10,8 @@ if ($session->logged()) {
 	$query = $conn->query($sql);
 	$vm = new ViewsManagement();
 	$vm->session = $session;
+	$vm->set("panel_friends", "/app/views/fragments/panel-friends.php");
+	$vm->set("panel_groups", "/app/views/fragments/panel-groups.php");
 	$vm->set("content", "/app/views/home/index.php");
 	$vm->render();
 } else {

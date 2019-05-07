@@ -7,35 +7,35 @@
 				<h3 class="panel-title">Sign Up</h3>
 			</div>
 			<div class="panel-body">
-				<form class="form" v-on:submit.prevent="sign_up">
+				<form class="form" v-on:submit.prevent>
 					<div class="row">
 						<div class="form-group col-sm-6">
 							<label class="sr-only" for="first-name">First Name</label>
 							<input type="text" class="form-control" id="first-name" name="first-name" placeholder="First Name"
-							       v-model="logDetails.first_name" v-on:keyup="keyMonitor">
+							       v-model="logDetails.first_name">
 						</div>
 						<div class="form-group col-sm-6">
 							<label class="sr-only" for="last-name">Last Name</label>
 							<input type="text" class="form-control" id="last-name" name="last-name" placeholder="Last Name"
-							       v-model="logDetails.last_name" v-on:keyup="keyMonitor">
+							       v-model="logDetails.last_name">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="sr-only" for="email">Email</label>
 						<input type="email" class="form-control" id="email" name="email" placeholder="Your Mail"
-						       v-model="logDetails.email" v-on:keyup="keyMonitor">
+						       v-model="logDetails.email">
 					</div>
 					<div class="form-group">
 						<label class="sr-only" for="passwd">Password</label>
 						<input type="password" class="form-control" id="passwd" name="password" placeholder="Your Password"
-						       v-model="logDetails.password" v-on:keyup="keyMonitor">
+						       v-model="logDetails.password">
 					</div>
 					<div class="form-group">
 						<label class="sr-only" for="conf-passwd">Confirm Password</label>
 						<input type="password" class="form-control" id="conf-passwd" name="confirm-password" placeholder="Confirm Password"
-						       v-model="logDetails.confirm_password" v-on:keyup="keyMonitor">
+						       v-model="logDetails.confirm_password">
 					</div>
-					<button type="submit" class="btn btn-default pull-right" @click="sign_up();">Sign Up</button>
+					<button type="submit" class="btn btn-default pull-right" @click="sign_up">Sign Up</button>
 				</form>
 				<div class="clearfix"></div>
 			</div>

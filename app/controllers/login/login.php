@@ -8,12 +8,14 @@ if ($session->logged()) {
 } else {
 	$conn = DatabaseConnection::getInstance();
 	$out = array("error" => false);
-	$username = $_POST["username"];
-	$password = $_POST["password"];
-	if ($username == "") {
+	//
+	$username = isset($_POST["username"]) ? $_POST["username"] : "";
+	$password = isset($_POST["password"]) ? $_POST["password"] : "";
+	//
+	if ($username === "") {
 		$out["error"] = true;
 		$out["message"] = "Username is required.";
-	} else if ($password == "") {
+	} else if ($password === "") {
 		$out["error"] = true;
 		$out["message"] = "Password is required.";
 	} else {

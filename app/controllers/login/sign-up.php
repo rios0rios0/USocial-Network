@@ -18,7 +18,7 @@ if ($session->logged()) {
 	if (($firstName !== "") && ($lastName !== "") && ($email !== "") && ($password !== "") && ($confirmPassword !== "")) {
 		if ($password === $confirmPassword) {
 			$username = trim(strtolower($firstName . $lastName)) . rand(0, 100);
-			$sql = "INSERT INTO user (username, password) VALUES ('$username', '$password')";
+			$sql = "INSERT INTO user (username, password, email) VALUES ('$username', '$password', '$email')";
 			$query = $conn->query($sql);
 			if ($query->rowCount() > 0) {
 				$out["message"] = "Sign Up successful. Your username is <strong>$username</strong>.";

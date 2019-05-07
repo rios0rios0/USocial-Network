@@ -6,22 +6,25 @@ var login = new Vue({
 		logDetails: {username: "", password: ""},
 	},
 	methods: {
-		keyMonitor: function (event) {
-			if (event.key === "Enter") {
-				//login.login();
-			}
-		},
 		login: function () {
 			var logForm = login.toFormData(login.logDetails);
 			axios.post("login/login.php", logForm)
 				.then(function (response) {
 					if (response.data.error) {
+						login.clearMessage();
+						if (sign_up !== undefined) {
+							sign_up.clearMessage();
+						}
 						login.errorMessage = response.data.message;
 					} else {
+						login.clearMessage();
+						if (sign_up !== undefined) {
+							sign_up.clearMessage();
+						}
 						login.successMessage = response.data.message;
 						login.logDetails = {username: "", password: ""};
 						setTimeout(function () {
-							window.location.href = base_url + "/app/controllers/home/index.php";
+							window.location.href = base_url + "app/controllers/home/index.php";
 						}, 1000);
 					}
 				});
