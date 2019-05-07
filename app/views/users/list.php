@@ -50,6 +50,14 @@
 								</p>
 							</div>
 							<?php
+						} else {
+							?>
+							<div class="col-md-3 col-centered">
+								<p>
+									<span class="btn btn-danger btn-block"><i class="fa fa-close"></i> Undo Friendship</span>
+								</p>
+							</div>
+							<?php
 						}
 						?>
 						<div class="col-md-3 col-centered">
@@ -67,6 +75,5 @@
 	</div>
 	<div class="col-md-4">
 		<?php include_once $this->panel_friends; ?>
-		<?php include_once $this->panel_groups; ?>
 	</div>
 </div>

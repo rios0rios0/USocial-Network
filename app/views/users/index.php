@@ -48,6 +48,5 @@
 	</div>
 	<div class="col-md-4">
 		<?php include_once $this->panel_friends; ?>
-		<?php include_once $this->panel_groups; ?>
 	</div>
 </div>

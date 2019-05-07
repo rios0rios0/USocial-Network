@@ -3,6 +3,7 @@ require_once "../../../core/views/ViewsManagement.php";
 require_once "../../../core/session/SessionManagement.php";
 require_once "../../../core/routes/RoutesManagement.php";
 require_once "../../../core/db/DatabaseConnection.php";
+require_once "../../services/UserService.php";
 $session = SessionManagement::getInstance();
 if ($session->logged()) {
 	$conn = DatabaseConnection::getInstance();
@@ -27,8 +28,9 @@ if ($session->logged()) {
 	$vm = new ViewsManagement();
 	$vm->session = $session;
 	$vm->users = $query->fetchAll(PDO::FETCH_CLASS);
+	$user_service = new UserService();
+	$vm->friends = $user_service->list_friends($session->user->id);
 	$vm->set("panel_friends", "/app/views/fragments/panel-friends.php");
-	$vm->set("panel_groups", "/app/views/fragments/panel-groups.php");
 	$vm->set("content", "/app/views/users/list.php");
 	$vm->render();
 } else {
