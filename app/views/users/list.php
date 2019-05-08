@@ -46,7 +46,7 @@
 							?>
 							<div class="col-md-3 col-centered">
 								<p>
-									<a href="#" class="btn btn-primary btn-block"><i class="fa fa-users"></i> Add Friend</a>
+									<btn-add-friendship id="<?= $user->id ?>"></btn-add-friendship>
 								</p>
 							</div>
 							<?php
@@ -54,7 +54,7 @@
 							?>
 							<div class="col-md-3 col-centered">
 								<p>
-									<span class="btn btn-danger btn-block"><i class="fa fa-close"></i> Undo Friendship</span>
+									<btn-undo-friendship id="<?= $user->friendship ?>"></btn-undo-friendship>
 								</p>
 							</div>
 							<?php
@@ -71,6 +71,7 @@
 				<?php
 			}
 			?>
+			<script src="<?= RoutesManagement::base_url() ?>resources/scripts/controllers/users/list.js"></script>
 		</div>
 	</div>
 	<div class="col-md-4">
