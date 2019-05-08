@@ -4,35 +4,18 @@
 	</div>
 	<div class="panel-body">
 		<ul>
-			<li>
-				<a href="profile.html" class="thumbnail"><img src="<?= RoutesManagement::base_url() ?>resources/images/user.png" alt=""></a>
-			</li>
-			<li>
-				<a href="profile.html" class="thumbnail"><img src="<?= RoutesManagement::base_url() ?>resources/images/user.png" alt=""></a>
-			</li>
-			<li>
-				<a href="profile.html" class="thumbnail"><img src="<?= RoutesManagement::base_url() ?>resources/images/user.png" alt=""></a>
-			</li>
-			<li>
-				<a href="profile.html" class="thumbnail"><img src="<?= RoutesManagement::base_url() ?>resources/images/user.png" alt=""></a>
-			</li>
-			<li>
-				<a href="profile.html" class="thumbnail"><img src="<?= RoutesManagement::base_url() ?>resources/images/user.png" alt=""></a>
-			</li>
-			<li>
-				<a href="profile.html" class="thumbnail"><img src="<?= RoutesManagement::base_url() ?>resources/images/user.png" alt=""></a>
-			</li>
-			<li>
-				<a href="profile.html" class="thumbnail"><img src="<?= RoutesManagement::base_url() ?>resources/images/user.png" alt=""></a>
-			</li>
-			<li>
-				<a href="profile.html" class="thumbnail"><img src="<?= RoutesManagement::base_url() ?>resources/images/user.png" alt=""></a>
-			</li>
-			<li>
-				<a href="profile.html" class="thumbnail"><img src="<?= RoutesManagement::base_url() ?>resources/images/user.png" alt=""></a>
-			</li>
+			<?php
+			foreach ($this->friends as $user) {
+				?>
+				<li>
+					<a href="<?= RoutesManagement::base_url() ?>app/controllers/users/index.php?id=<?= $user->id ?>"
+					   class="thumbnail"><img src="<?= RoutesManagement::base_url() ?>resources/images/user.png" alt=""></a>
+				</li>
+				<?php
+			}
+			?>
 		</ul>
 		<div class="clearfix"></div>
-		<a class="btn btn-primary" href="#">View All Friends</a>
+		<a class="btn btn-primary" href="<?= RoutesManagement::base_url() ?>app/controllers/users/list.php">View All Friends</a>
 	</div>
 </div>
