@@ -31,16 +31,7 @@
 							<?php
 						} else if (($user->requester) && (!$user->friend)) {
 							?>
-							<div class="col-md-2 col-centered">
-								<p>
-									<span class="btn btn-success btn-block"><i class="fa fa-check"></i> Accept</span>
-								</p>
-							</div>
-							<div class="col-md-2 col-centered">
-								<p>
-									<span class="btn btn-danger btn-block"><i class="fa fa-close"></i> Reject</span>
-								</p>
-							</div>
+							<btn-accept-reject id="<?= $user->id ?>"></btn-accept-reject>
 							<?php
 						} else if (!$user->friend) {
 							?>
@@ -54,7 +45,7 @@
 							?>
 							<div class="col-md-3 col-centered">
 								<p>
-									<btn-undo-friendship id="<?= $user->friendship ?>"></btn-undo-friendship>
+									<btn-undo-friendship id="<?= $user->id ?>"></btn-undo-friendship>
 								</p>
 							</div>
 							<?php
@@ -66,6 +57,18 @@
 								   class="btn btn-primary btn-block"><i class="fa fa-edit"></i> View Profile</a>
 							</p>
 						</div>
+					</div>
+					<div class="alert alert-danger text-center" v-if="errorMessage">
+						<button type="button" class="close" @click="clearMessage();">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<span class="glyphicon glyphicon-alert"></span> <span v-html="errorMessage"></span>
+					</div>
+					<div class="alert alert-success text-center" v-if="successMessage">
+						<button type="button" class="close" @click="clearMessage();">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<span class="glyphicon glyphicon-check"></span> <span v-html="successMessage"></span>
 					</div>
 				</div>
 				<?php
