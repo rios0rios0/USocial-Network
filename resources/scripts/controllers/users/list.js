@@ -13,8 +13,9 @@ var list = new Vue({
 				}
 			},
 			props: ["id"],
-			template: "<span class='btn btn-primary btn-block' v-bind:class='uuid' " +
-				"@click='add_friendship({ id })'><i class='fa fa-users'></i> Add Friend</span>",
+			template: "<div class='col-md-3 col-centered' v-bind:class='uuid'><p>" +
+				"<span class='btn btn-primary btn-block' @click='add_friendship({ id })'>" +
+				"<i class='fa fa-users'></i> Add Friend</span></p></div>",
 			methods: {
 				add_friendship: function (friendship) {
 					const self = this;
@@ -45,8 +46,9 @@ var list = new Vue({
 				}
 			},
 			props: ["id"],
-			template: "<span class='btn btn-danger btn-block' v-bind:class='uuid' " +
-				"@click='undo_friendship({ id })'><i class='fa fa-close'></i> Undo Friendship</span>",
+			template: "<div class='col-md-3 col-centered' v-bind:class='uuid'><p>" +
+				"<span class='btn btn-danger btn-block' @click='undo_friendship({ id })'>" +
+				"<i class='fa fa-close'></i> Undo Friendship</span></p></div>",
 			methods: {
 				undo_friendship: function (friendship) {
 					const self = this;
@@ -77,8 +79,9 @@ var list = new Vue({
 					uuid: `btn-invited-uuid-${this.$parent.$data.uuid++}`
 				}
 			},
-			template: "<span class='btn btn-warning btn-block' v-bind:class='uuid' " +
-				"disabled='disabled'><i class='fa fa-check'></i> Invited</span>"
+			template: "<div class='col-md-3 col-centered' v-bind:class='uuid'><p>" +
+				"<span class='btn btn-warning btn-block' disabled='disabled'>" +
+				"<i class='fa fa-check'></i> Invited</span></p></div>"
 		},
 		"btn-accept-reject": {
 			data: function () {
@@ -88,15 +91,15 @@ var list = new Vue({
 			},
 			props: ["id"],
 			template: "<div v-bind:class='uuid'><div class='col-md-2 col-centered'><p>" +
-				"<span @click='accept_reject(1, { id })' class='btn btn-success btn-block'>" +
+				"<span @click='accept_reject({ id, accepted: 1 })' class='btn btn-success btn-block'>" +
 				"<i class='fa fa-check'></i> Accept</span></p></div>" +
 				"<div class='col-md-2 col-centered'><p>" +
-				"<span @click='accept_reject(0, { id })' class='btn btn-danger btn-block'>" +
+				"<span @click='accept_reject({ id, accepted: 0 })' class='btn btn-danger btn-block'>" +
 				"<i class='fa fa-close'></i> Reject</span></p></div></div>",
 			methods: {
-				accept_reject: function (decision, friendship) {
+				accept_reject: function (options) {
 					const self = this;
-					const params = list.toFormData(friendship);
+					const params = list.toFormData(options);
 					axios.post("accept_reject.php", params)
 						.then(function (response) {
 							if (response.data.error) {
@@ -104,7 +107,8 @@ var list = new Vue({
 								list.errorMessage = response.data.message;
 							} else {
 								list.clearMessage();
-								const Construct = Vue.extend(list.$options.components["btn-add-friendship"]);
+								let component = ((options.accepted) ? "btn-undo-friendship" : "btn-add-friendship");
+								const Construct = Vue.extend(list.$options.components[component]);
 								const target = list.$children.find((children) => {
 									return children.$el.className.includes(self.uuid);
 								});
@@ -113,16 +117,28 @@ var list = new Vue({
 									propsData: {id: response.data.id}
 								}).$mount(target.$el);
 							}
+						})
+						.catch(function (response) {
+							list.clearMessage();
+							console.log(response);
 						});
 				}
 			}
 		}
 	},
 	methods: {
-		toFormData: function (obj) {
+		toFormData: function (...objects) {
 			var form_data = new FormData();
-			for (var key in obj) {
-				form_data.append(key, obj[key]);
+			if (objects instanceof Array) {
+				for (let k1 in objects) {
+					for (let k2 in objects[k1]) {
+						form_data.append(k2, objects[k1][k2]);
+					}
+				}
+			} else {
+				for (let key in objects) {
+					form_data.append(key, obj[key]);
+				}
 			}
 			return form_data;
 		},

@@ -12,10 +12,10 @@ if ($session->logged()) {
 		       	U.username,
 		       	U.email,
        			U.photo,
-       			IF(F1.id_user_accepted IS NOT NULL, 1, 0)          AS invited,
-				IF(F2.id_user_requested IS NOT NULL, 1, 0)         AS requester,
-				IF((F1.accepted OR F2.accepted) IS NOT NULL, 1, 0) AS friend,
-       			COALESCE(F1.id, F2.id) AS friendship
+       			IF(F1.id_user_accepted IS NOT NULL, 1, 0)	AS invited,
+				IF(F2.id_user_requested IS NOT NULL, 1, 0)	AS requester,
+				COALESCE(F1.accepted, F2.accepted)			AS friend,
+       			COALESCE(F1.id, F2.id)						AS friendship
 			FROM user AS U
 				LEFT JOIN friend AS F1
 			    	ON U.id = F1.id_user_accepted

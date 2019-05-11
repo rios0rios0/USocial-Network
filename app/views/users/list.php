@@ -23,11 +23,7 @@
 						<?php
 						if (($user->invited) && (!$user->friend)) {
 							?>
-							<div class="col-md-3 col-centered">
-								<p>
-									<span class="btn btn-warning btn-block" disabled="disabled"><i class="fa fa-check"></i> Invited</span>
-								</p>
-							</div>
+							<btn-invited></btn-invited>
 							<?php
 						} else if (($user->requester) && (!$user->friend)) {
 							?>
@@ -35,19 +31,11 @@
 							<?php
 						} else if (!$user->friend) {
 							?>
-							<div class="col-md-3 col-centered">
-								<p>
-									<btn-add-friendship id="<?= $user->id ?>"></btn-add-friendship>
-								</p>
-							</div>
+							<btn-add-friendship id="<?= $user->id ?>"></btn-add-friendship>
 							<?php
 						} else {
 							?>
-							<div class="col-md-3 col-centered">
-								<p>
-									<btn-undo-friendship id="<?= $user->id ?>"></btn-undo-friendship>
-								</p>
-							</div>
+							<btn-undo-friendship id="<?= $user->id ?>"></btn-undo-friendship>
 							<?php
 						}
 						?>
