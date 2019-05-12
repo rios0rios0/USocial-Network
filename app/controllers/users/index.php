@@ -4,6 +4,7 @@ require_once "../../../core/session/SessionManagement.php";
 require_once "../../../core/routes/RoutesManagement.php";
 require_once "../../../core/db/DatabaseConnection.php";
 require_once "../../services/UserService.php";
+require_once "../../services/PostService.php";
 $session = SessionManagement::getInstance();
 if ($session->logged()) {
 	$conn = DatabaseConnection::getInstance();
@@ -12,31 +13,29 @@ if ($session->logged()) {
 	$id = isset($_GET["id"]) ? $_GET["id"] : "";
 	$id = (($id !== "") ? $id : $session->user->id);
 	//
-	$sql = "SELECT * FROM user AS U WHERE U.id = '" . $id . "'";
-	$query = $conn->query($sql);
-	if ($query->rowCount() > 0) {
-		$vm = new ViewsManagement();
-		$vm->session = $session;
-		$vm->user = $query->fetchObject();
-		$user_service = new UserService();
-		$vm->invitations = $user_service->list_friends($session->user->id, 0, 6);
-		$vm->friends = $user_service->list_friends($session->user->id, 1, 6);
-		if (count($vm->invitations) > 0) {
-			$vm->set("panel_invitations", "/app/views/fragments/panel-invitations.php");
-		}
-		if (count($vm->friends) > 0) {
-			$vm->set("panel_friends", "/app/views/fragments/panel-friends.php");
-		}
-		$vm->posts = $user_service->list_friends($id);
-		$vm->set("content", "/app/views/users/index.php");
-		$vm->render();
-	} else {
-		$out["error"] = true;
-		$out["message"] = "User not exists.";
-		header("Content-type: application/json");
-		echo json_encode($out);
-		die();
+	$vm = new ViewsManagement();
+	$vm->session = $session;
+	$user_service = new UserService();
+	$vm->user = $user_service->get($id);
+	$vm->invitations = $user_service->list_friends($session->user->id, 0, 6);
+	$vm->friends = $user_service->list_friends($session->user->id, 1, 6);
+	if (count($vm->invitations) > 0) {
+		$vm->set("panel_invitations", "/app/views/fragments/panel-invitations.php");
 	}
+	if (count($vm->friends) > 0) {
+		$vm->set("panel_friends", "/app/views/fragments/panel-friends.php");
+	}
+	$post_service = new PostService();
+	$vm->posts = $post_service->list($id);
+	foreach ($vm->posts as $key => $value) {
+		$vm->posts[$key]->user = $user_service->get($value->id_user);
+		$vm->posts[$key]->comments = $post_service->list_comments($value->id);
+	}
+	if (count($vm->posts) > 0) {
+		$vm->set("panel_posts", "/app/views/fragments/panel-posts.php");
+	}
+	$vm->set("content", "/app/views/users/index.php");
+	$vm->render();
 } else {
 	RoutesManagement::redirect("/app/");
 }
