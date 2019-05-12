@@ -167,11 +167,11 @@
 	</div>
 	<div class="col-md-4">
 		<?php
+		if (isset($this->vars["panel_invitations"])) {
+			include_once $this->panel_invitations;
+		}
 		if (isset($this->vars["panel_friends"])) {
 			include_once $this->panel_friends;
-		}
-		if (isset($this->vars["panel_invites"])) {
-			include_once $this->panel_invites;
 		}
 		?>
 	</div>

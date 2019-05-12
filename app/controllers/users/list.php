@@ -25,17 +25,17 @@ if ($session->logged()) {
 		case "friends":
 			$vm->users = $user_service->list_friends($session->user->id);
 			break;
-		case "invites":
+		case "invitations":
 			$vm->users = $user_service->list_friends($session->user->id, 0);
 			break;
 		default:
 			$vm->users = $user_service->list($session->user->id, $condition);
 			break;
 	}
-	$vm->invites = $user_service->list_friends($session->user->id, 0, 6);
+	$vm->invitations = $user_service->list_friends($session->user->id, 0, 6);
 	$vm->friends = $user_service->list_friends($session->user->id, 1, 6);
-	if (count($vm->invites) > 0) {
-		$vm->set("panel_invites", "/app/views/fragments/panel-invites.php");
+	if (count($vm->invitations) > 0) {
+		$vm->set("panel_invitations", "/app/views/fragments/panel-invitations.php");
 	}
 	if (count($vm->friends) > 0) {
 		$vm->set("panel_friends", "/app/views/fragments/panel-friends.php");
