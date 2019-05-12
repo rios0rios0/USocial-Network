@@ -166,6 +166,13 @@
 		</div>
 	</div>
 	<div class="col-md-4">
-		<?php include_once $this->panel_friends; ?>
+		<?php
+		if (isset($this->vars["panel_invitations"])) {
+			include_once $this->panel_invitations;
+		}
+		if (isset($this->vars["panel_friends"])) {
+			include_once $this->panel_friends;
+		}
+		?>
 	</div>
 </div>

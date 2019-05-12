@@ -19,9 +19,15 @@ if ($session->logged()) {
 		$vm->session = $session;
 		$vm->user = $query->fetchObject();
 		$user_service = new UserService();
-		$vm->friends = $user_service->list_friends($session->user->id);
+		$vm->invitations = $user_service->list_friends($session->user->id, 0, 6);
+		$vm->friends = $user_service->list_friends($session->user->id, 1, 6);
+		if (count($vm->invitations) > 0) {
+			$vm->set("panel_invitations", "/app/views/fragments/panel-invitations.php");
+		}
+		if (count($vm->friends) > 0) {
+			$vm->set("panel_friends", "/app/views/fragments/panel-friends.php");
+		}
 		$vm->posts = $user_service->list_friends($id);
-		$vm->set("panel_friends", "/app/views/fragments/panel-friends.php");
 		$vm->set("content", "/app/views/users/index.php");
 		$vm->render();
 	} else {

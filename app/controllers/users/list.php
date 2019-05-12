@@ -7,31 +7,39 @@ require_once "../../services/UserService.php";
 $session = SessionManagement::getInstance();
 if ($session->logged()) {
 	$conn = DatabaseConnection::getInstance();
-	$sql = "SELECT
-				U.id,		
-		       	U.username,
-		       	U.email,
-       			U.photo,
-       			IF(F1.id_user_accepted IS NOT NULL, 1, 0)	AS invited,
-				IF(F2.id_user_requested IS NOT NULL, 1, 0)	AS requester,
-				COALESCE(F1.accepted, F2.accepted)			AS friend,
-       			COALESCE(F1.id, F2.id)						AS friendship
-			FROM user AS U
-				LEFT JOIN friend AS F1
-			    	ON U.id = F1.id_user_accepted
-						AND F1.id_user_requested = '" . $session->user->id . "'
-				LEFT JOIN friend AS F2
-	                ON U.id = F2.id_user_requested
-						AND F2.id_user_accepted = '" . $session->user->id . "'
-			WHERE U.id <> '" . $session->user->id . "'
-			ORDER BY U.username ASC";
-	$query = $conn->query($sql);
+	$out = array("error" => false);
+	//
+	$search = new stdClass();
+	$search->action = isset($_GET["action"]) ? $_GET["action"] : "";
+	$search->username = isset($_GET["username"]) ? $_GET["username"] : "";
+	$condition = "";
+	if ($search->username !== "") {
+		$condition = "AND U.username LIKE '%" . $search->username . "%'";
+	}
+	//
 	$vm = new ViewsManagement();
 	$vm->session = $session;
-	$vm->users = $query->fetchAll(PDO::FETCH_CLASS);
+	$vm->search = $search;
 	$user_service = new UserService();
-	$vm->friends = $user_service->list_friends($session->user->id);
-	$vm->set("panel_friends", "/app/views/fragments/panel-friends.php");
+	switch ($search->action) {
+		case "friends":
+			$vm->users = $user_service->list_friends($session->user->id);
+			break;
+		case "invitations":
+			$vm->users = $user_service->list_friends($session->user->id, 0);
+			break;
+		default:
+			$vm->users = $user_service->list($session->user->id, $condition);
+			break;
+	}
+	$vm->invitations = $user_service->list_friends($session->user->id, 0, 6);
+	$vm->friends = $user_service->list_friends($session->user->id, 1, 6);
+	if (count($vm->invitations) > 0) {
+		$vm->set("panel_invitations", "/app/views/fragments/panel-invitations.php");
+	}
+	if (count($vm->friends) > 0) {
+		$vm->set("panel_friends", "/app/views/fragments/panel-friends.php");
+	}
 	$vm->set("content", "/app/views/users/list.php");
 	$vm->render();
 } else {

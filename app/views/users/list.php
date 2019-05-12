@@ -1,5 +1,18 @@
 <div class="row">
 	<div class="col-md-8">
+		<div class="panel panel-primary">
+			<div class="panel-heading"><h3 class="panel-title">Search by</h3></div>
+			<div class="panel-body">
+				<form class="form" method="get" action="list.php">
+					<div class="form-group">
+						<label for="username">Username</label>
+						<input type="text" class="form-control" id="username" name="username"
+						       placeholder="Ex.: rios0rios0" value="<?= $this->search->username ?>">
+					</div>
+					<button type="submit" class="btn btn-default">Search</button>
+				</form>
+			</div>
+		</div>
 		<div class="users">
 			<h1 class="page-header">Users</h1>
 			<?php
@@ -66,6 +79,13 @@
 		</div>
 	</div>
 	<div class="col-md-4">
-		<?php include_once $this->panel_friends; ?>
+		<?php
+		if (isset($this->vars["panel_invitations"])) {
+			include_once $this->panel_invitations;
+		}
+		if (isset($this->vars["panel_friends"])) {
+			include_once $this->panel_friends;
+		}
+		?>
 	</div>
 </div>
