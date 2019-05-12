@@ -1,11 +1,11 @@
 <div class="panel panel-default friends">
 	<div class="panel-heading">
-		<h3 class="panel-title">My Friends</h3>
+		<h3 class="panel-title">Invites</h3>
 	</div>
 	<div class="panel-body">
 		<ul>
 			<?php
-			foreach ($this->friends as $user) {
+			foreach ($this->invites as $user) {
 				?>
 				<li>
 					<a href="<?= RoutesManagement::base_url() ?>app/controllers/users/index.php?id=<?= $user->id ?>"
@@ -16,6 +16,6 @@
 			?>
 		</ul>
 		<div class="clearfix"></div>
-		<a class="btn btn-primary" href="<?= RoutesManagement::base_url() ?>app/controllers/users/list.php?action=friends">View All Friends</a>
+		<a class="btn btn-primary" href="<?= RoutesManagement::base_url() ?>app/controllers/users/list.php?action=invites">View All Invites</a>
 	</div>
 </div>
