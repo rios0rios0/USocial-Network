@@ -18,15 +18,27 @@ if ($session->logged()) {
 	if (count($vm->friends) > 0) {
 		$vm->set("panel_friends", "/app/views/fragments/panel-friends.php");
 	}
+	//
 	$post_service = new PostService();
 	$vm->posts = $post_service->timeline($session->user->id);
-	foreach ($vm->posts as $key => $value) {
-		$vm->posts[$key]->user = $user_service->get($value->id_user);
-		$vm->posts[$key]->comments = $post_service->list_comments($value->id);
+	foreach ($vm->posts as $k1 => $v1) {
+		$vm->posts[$k1]->user = $user_service->get($v1->id_user);
+		$vm->posts[$k1]->user->url = RoutesManagement::base_url() . "app/controllers/user/index.php?id=" . $v1->id_user;
+		$vm->posts[$k1]->user->image = new stdClass();
+		$vm->posts[$k1]->user->image->url = RoutesManagement::base_url() . "resources/images/user.png";
+		$comments = $post_service->list_comments($v1->id);
+		foreach ($comments as $k2 => $v2) {
+			$comments[$k2]->user = $user_service->get($v2->id_user);
+			$comments[$k2]->user->url = RoutesManagement::base_url() . "app/controllers/user/index.php?id=" . $v2->id_user;
+			$comments[$k2]->user->image = new stdClass();
+			$comments[$k2]->user->image->url = RoutesManagement::base_url() . "resources/images/user.png";
+		}
+		$vm->posts[$k1]->comments = $comments;
 	}
 	if (count($vm->posts) > 0) {
 		$vm->set("panel_posts", "/app/views/fragments/panel-posts.php");
 	}
+	//
 	$vm->set("content", "/app/views/home/index.php");
 	$vm->render();
 } else {

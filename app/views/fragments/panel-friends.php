@@ -8,7 +8,7 @@
 			foreach ($this->friends as $user) {
 				?>
 				<li>
-					<a href="<?= RoutesManagement::base_url() ?>app/controllers/users/index.php?id=<?= $user->id ?>"
+					<a href="<?= RoutesManagement::base_url() ?>app/controllers/user/index.php?id=<?= $user->id ?>"
 					   class="thumbnail"><img src="<?= RoutesManagement::base_url() ?>resources/images/user.png" alt=""></a>
 				</li>
 				<?php
@@ -16,6 +16,6 @@
 			?>
 		</ul>
 		<div class="clearfix"></div>
-		<a class="btn btn-primary" href="<?= RoutesManagement::base_url() ?>app/controllers/users/list.php?action=friends">View All Friends</a>
+		<a class="btn btn-primary" href="<?= RoutesManagement::base_url() ?>app/controllers/user/list.php?action=friends">View All Friends</a>
 	</div>
 </div>

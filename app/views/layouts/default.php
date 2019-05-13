@@ -38,8 +38,8 @@ if ($this->session->logged()) {
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
 					<li><a href="<?= RoutesManagement::base_url() ?>app/controllers/home/index.php">Home</a></li>
-					<li><a href="<?= RoutesManagement::base_url() ?>app/controllers/users/index.php">Profile</a></li>
-					<li><a href="<?= RoutesManagement::base_url() ?>app/controllers/users/list.php">Users</a></li>
+					<li><a href="<?= RoutesManagement::base_url() ?>app/controllers/user/index.php">Profile</a></li>
+					<li><a href="<?= RoutesManagement::base_url() ?>app/controllers/user/list.php">Users</a></li>
 					<li><a href="<?= RoutesManagement::base_url() ?>app/controllers/login/logout.php">Log Out</a></li>
 				</ul>
 			</div>

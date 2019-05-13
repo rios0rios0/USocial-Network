@@ -54,7 +54,7 @@
 						?>
 						<div class="col-md-3 col-centered">
 							<p>
-								<a href="<?= RoutesManagement::base_url() ?>app/controllers/users/index.php?id=<?= $user->id ?>"
+								<a href="<?= RoutesManagement::base_url() ?>app/controllers/user/index.php?id=<?= $user->id ?>"
 								   class="btn btn-primary btn-block"><i class="fa fa-edit"></i> View Profile</a>
 							</p>
 						</div>
@@ -75,7 +75,7 @@
 				<?php
 			}
 			?>
-			<script src="<?= RoutesManagement::base_url() ?>resources/scripts/controllers/users/list.js"></script>
+			<script src="<?= RoutesManagement::base_url() ?>resources/scripts/controllers/user/list.js"></script>
 		</div>
 	</div>
 	<div class="col-md-4">
