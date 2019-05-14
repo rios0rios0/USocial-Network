@@ -9,20 +9,23 @@ if ($session->logged()) {
 	//
 	$id = isset($_POST["id"]) ? $_POST["id"] : "";
 	//
-	$sql = "INSERT INTO friend (id_user_requested, id_user_accepted) VALUES (" . $session->user->id . ", $id)";
-	$query = $conn->query($sql);
-	if ($query->rowCount() > 0) {
-		$out["message"] = "Successful invited.";
-		header("Content-type: application/json");
-		echo json_encode($out);
-		die();
+	if ($id !== "") {
+		$sql = "INSERT INTO friend (id_user_requested, id_user_accepted) VALUES (" . $session->user->id . ", $id)";
+		$query = $conn->query($sql);
+		if ($query->rowCount() > 0) {
+			$out["message"] = "Successful invited.";
+		} else {
+			$out["error"] = true;
+			$out["message"] = "Error on insertion.";
+		}
 	} else {
 		$out["error"] = true;
-		$out["message"] = "Error on insertion.";
-		header("Content-type: application/json");
-		echo json_encode($out);
-		die();
+		$out["message"] = "All fields is required.";
 	}
+	DatabaseConnection::close();
+	header("Content-type: application/json");
+	echo json_encode($out);
+	die();
 } else {
 	RoutesManagement::redirect("/app/");
 }

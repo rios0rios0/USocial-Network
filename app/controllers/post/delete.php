@@ -7,22 +7,25 @@ if ($session->logged()) {
 	$conn = DatabaseConnection::getInstance();
 	$out = array("error" => false);
 	//
-	$id = isset($_POST["id"]) ? $_POST["id"] : "";
+	$id_post = isset($_POST["id"]) ? $_POST["id"] : "";
 	//
-	$sql = "DELETE P FROM post AS P WHERE P.id = $id";
-	$query = $conn->query($sql);
-	if ($query->rowCount() > 0) {
-		$out["message"] = "Successful deleted post.";
-		header("Content-type: application/json");
-		echo json_encode($out);
-		die();
+	if ($id_post !== "") {
+		$sql = "DELETE P FROM post AS P WHERE P.id = $id_post";
+		$query = $conn->query($sql);
+		if ($query->rowCount() > 0) {
+			$out["message"] = "Successful deleted post.";
+		} else {
+			$out["error"] = true;
+			$out["message"] = "Error on deletion.";
+		}
 	} else {
 		$out["error"] = true;
-		$out["message"] = "Error on update.";
-		header("Content-type: application/json");
-		echo json_encode($out);
-		die();
+		$out["message"] = "All fields is required.";
 	}
+	DatabaseConnection::close();
+	header("Content-type: application/json");
+	echo json_encode($out);
+	die();
 } else {
 	RoutesManagement::redirect("/app/");
 }

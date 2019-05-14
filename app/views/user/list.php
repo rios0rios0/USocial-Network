@@ -75,7 +75,7 @@
 				<?php
 			}
 			?>
-			<script src="<?= RoutesManagement::base_url() ?>resources/scripts/controllers/user/list.js"></script>
+			<script src="<?= RoutesManagement::base_url() ?>resources/scripts/controllers/user/component.js"></script>
 		</div>
 	</div>
 	<div class="col-md-4">

@@ -7,31 +7,34 @@ if ($session->logged()) {
 	$conn = DatabaseConnection::getInstance();
 	$out = array("error" => false);
 	//
-	$id01 = $session->user->id;
 	$id02 = isset($_POST["id"]) ? $_POST["id"] : "";
 	$accepted = isset($_POST["accepted"]) ? $_POST["accepted"] : "";
 	//
-	if (intval($accepted) === 0) {
-		$sql = "DELETE F FROM friend AS F 
-				WHERE (F.id_user_accepted = $id01 AND F.id_user_requested = $id02)";
-	} else {
-		$sql = "UPDATE friend AS F SET F.accepted = $accepted
-            	WHERE (F.id_user_accepted = $id01 AND F.id_user_requested = $id02)";
-	}
-	$query = $conn->query($sql);
-	if ($query->rowCount() > 0) {
-		$out["id"] = $id02;
-		$out["message"] = "Successful updated friendship.";
-		header("Content-type: application/json");
-		echo json_encode($out);
-		die();
+	if (($id02 !== "") && ($accepted !== "")) {
+		$id01 = $session->user->id;
+		if (intval($accepted) === 0) {
+			$sql = "DELETE F FROM friend AS F 
+					WHERE (F.id_user_accepted = $id01 AND F.id_user_requested = $id02)";
+		} else {
+			$sql = "UPDATE friend AS F SET F.accepted = $accepted
+            		WHERE (F.id_user_accepted = $id01 AND F.id_user_requested = $id02)";
+		}
+		$query = $conn->query($sql);
+		if ($query->rowCount() > 0) {
+			$out["id"] = $id02;
+			$out["message"] = "Successful updated friendship.";
+		} else {
+			$out["error"] = true;
+			$out["message"] = "Error on update.";
+		}
 	} else {
 		$out["error"] = true;
-		$out["message"] = "Error on update.";
-		header("Content-type: application/json");
-		echo json_encode($out);
-		die();
+		$out["message"] = "All fields is required.";
 	}
+	DatabaseConnection::close();
+	header("Content-type: application/json");
+	echo json_encode($out);
+	die();
 } else {
 	RoutesManagement::redirect("/app/");
 }

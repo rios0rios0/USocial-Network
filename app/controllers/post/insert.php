@@ -7,29 +7,26 @@ if ($session->logged()) {
 	$conn = DatabaseConnection::getInstance();
 	$out = array("error" => false);
 	//
-	$id02 = isset($_POST["id"]) ? $_POST["id"] : "";
+	$html_text = isset($_POST["html_text"]) ? $_POST["html_text"] : "";
+	$url_image = isset($_POST["url_image"]) ? $_POST["url_image"] : "";
 	//
-	if ($id02 !== "") {
-		$id01 = $session->user->id;
-		$sql = "DELETE F FROM friend AS F 
-				WHERE ((F.id_user_requested = $id01 AND F.id_user_accepted = $id02)
-					OR (F.id_user_requested = $id02 AND F.id_user_accepted = $id01))";
+	if (($html_text !== "") && ($url_image !== "")) {
+		$id_user = $session->user->id;
+		$html_text = addslashes(str_replace('"', "'", $html_text));
+		$sql = "INSERT INTO post (id_user, html_text, photo) VALUES ($id_user, '$html_text', '$url_image')";
 		$query = $conn->query($sql);
 		if ($query->rowCount() > 0) {
-			$out["id"] = $id02;
-			$out["message"] = "Successful undo friendship.";
+			$out["message"] = "Successful inserted post.";
 		} else {
 			$out["error"] = true;
-			$out["message"] = "Error on deletion.";
+			$out["message"] = "Error on insertion.";
 		}
 	} else {
 		$out["error"] = true;
 		$out["message"] = "All fields is required.";
 	}
 	DatabaseConnection::close();
-	header("Content-type: application/json");
-	echo json_encode($out);
-	die();
+	RoutesManagement::redirect("/app/controllers/home/index.php");
 } else {
 	RoutesManagement::redirect("/app/");
 }

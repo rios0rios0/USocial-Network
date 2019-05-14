@@ -5,18 +5,18 @@
 				<h3 class="panel-title">Wall</h3>
 			</div>
 			<div class="panel-body">
-				<form>
+				<form class="form" method="post" action="<?= RoutesManagement::base_url() ?>app/controllers/post/insert.php">
 					<div class="form-group">
-						<textarea class="form-control" placeholder="Write on the wall"></textarea>
+						<textarea class="form-control" id="html_text" name="html_text"
+						          placeholder="Write on the wall..." required="required"></textarea>
 					</div>
-					<button type="submit" class="btn btn-default">Submit</button>
+					<div class="form-group">
+						<input type="text" class="form-control" id="url_image" name="url_image"
+						       placeholder="Path to image for post..." required="required">
+					</div>
 					<div class="pull-right">
 						<div class="btn-toolbar">
-							<button type="button" class="btn btn-default"><i class="fa fa-pencil"></i>Text</button>
-							<button type="button" class="btn btn-default"><i class="fa fa-file-image-o"></i>Image
-							</button>
-							<button type="button" class="btn btn-default"><i class="fa fa-file-video-o"></i>Video
-							</button>
+							<button type="submit" class="btn btn-default"><i class="fa fa-pencil"></i> Submit</button>
 						</div>
 					</div>
 				</form>
