@@ -2,3 +2,7 @@
 	display: inline-block !important;
 	float: none !important;
 }
+
+div[class*="btn-accept-reject-uuid-"] {
+	display: inline !important;
+}
