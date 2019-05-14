@@ -9,7 +9,7 @@ class PostService
 		$this->conn = DatabaseConnection::getInstance();
 	}
 
-	public function list($id_user)
+	public function list($id_user, $id_session_user = 0)
 	{
 		$sql = "SELECT
 					P.id,
@@ -17,7 +17,7 @@ class PostService
        				P.html_text,
        				P.photo,
        				P.created,
-       				COALESCE((SELECT 'true' FROM `like` AS L WHERE L.id_post = P.id AND L.id_user = $id_user), 'false') AS liked,
+       				COALESCE((SELECT 'true' FROM `like` AS L WHERE L.id_post = P.id AND L.id_user = $id_session_user), 'false') AS liked,
        				P.modified,
        				(SELECT COUNT(*) FROM `like` AS L WHERE L.id_post = P.id) AS n_likes,
        				(SELECT COUNT(*) FROM comment AS C WHERE C.id_post = P.id) AS n_comments
