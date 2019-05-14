@@ -7,9 +7,16 @@ require_once "../../services/UserService.php";
 require_once "../../services/PostService.php";
 $session = SessionManagement::getInstance();
 if ($session->logged()) {
+	$conn = DatabaseConnection::getInstance();
+	$out = array("error" => false);
+	//
+	$id = isset($_GET["id"]) ? $_GET["id"] : "";
+	$id = (($id !== "") ? $id : $session->user->id);
+	//
 	$vm = new ViewsManagement();
 	$vm->session = $session;
 	$user_service = new UserService();
+	$vm->user = $user_service->get($id);
 	$vm->invitations = $user_service->list_friends($session->user->id, 0, 6);
 	$vm->friends = $user_service->list_friends($session->user->id, 1, 6);
 	if (count($vm->invitations) > 0) {
@@ -20,7 +27,7 @@ if ($session->logged()) {
 	}
 	//
 	$post_service = new PostService();
-	$vm->posts = $post_service->timeline($session->user->id);
+	$vm->posts = $post_service->list($id);
 	foreach ($vm->posts as $k1 => $v1) {
 		$vm->posts[$k1]->user = $user_service->get($v1->id_user);
 		$vm->posts[$k1]->user->url = RoutesManagement::base_url() . "app/controllers/user/index.php?id=" . $v1->id_user;
@@ -39,7 +46,7 @@ if ($session->logged()) {
 		$vm->set("panel_posts", "/app/views/fragments/panel-posts.php");
 	}
 	//
-	$vm->set("content", "/app/views/home/index.php");
+	$vm->set("content", "/app/views/user/index.php");
 	$vm->render();
 } else {
 	RoutesManagement::redirect("/app/");

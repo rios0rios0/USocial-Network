@@ -13,8 +13,8 @@ var list = new Vue({
 				}
 			},
 			props: ["id"],
-			template: "<div class='col-md-3 col-centered' v-bind:class='uuid'><p>" +
-				"<span class='btn btn-primary btn-block' @click='add_friendship({ id })'>" +
+			template: "<div v-bind:class='uuid' class='col-md-3 col-centered'><p>" +
+				"<span @click='add_friendship({ id })' class='btn btn-primary btn-block'>" +
 				"<i class='fa fa-users'></i> Add Friend</span></p></div>",
 			methods: {
 				add_friendship: function (friendship) {
@@ -46,8 +46,8 @@ var list = new Vue({
 				}
 			},
 			props: ["id"],
-			template: "<div class='col-md-3 col-centered' v-bind:class='uuid'><p>" +
-				"<span class='btn btn-danger btn-block' @click='undo_friendship({ id })'>" +
+			template: "<div v-bind:class='uuid' class='col-md-3 col-centered'><p>" +
+				"<span @click='undo_friendship({ id })' class='btn btn-danger btn-block'>" +
 				"<i class='fa fa-close'></i> Undo Friendship</span></p></div>",
 			methods: {
 				undo_friendship: function (friendship) {
@@ -79,7 +79,7 @@ var list = new Vue({
 					uuid: `btn-invited-uuid-${this.$parent.$data.uuid++}`
 				}
 			},
-			template: "<div class='col-md-3 col-centered' v-bind:class='uuid'><p>" +
+			template: "<div v-bind:class='uuid' class='col-md-3 col-centered'><p>" +
 				"<span class='btn btn-warning btn-block' disabled='disabled'>" +
 				"<i class='fa fa-check'></i> Invited</span></p></div>"
 		},
