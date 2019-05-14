@@ -27,7 +27,7 @@ if ($session->logged()) {
 	}
 	//
 	$post_service = new PostService();
-	$vm->posts = $post_service->list($id);
+	$vm->posts = $post_service->list($id, $session->user->id);
 	foreach ($vm->posts as $k1 => $v1) {
 		$vm->posts[$k1]->user = $user_service->get($v1->id_user);
 		$vm->posts[$k1]->user->url = RoutesManagement::base_url() . "app/controllers/user/index.php?id=" . $v1->id_user;

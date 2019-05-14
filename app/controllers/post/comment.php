@@ -12,7 +12,7 @@ if ($session->logged()) {
 	//
 	if (($id_post !== "") && ($html_text !== "")) {
 		$id_user = $session->user->id;
-		$html_text = base64_encode(str_replace('"', "'", $html_text));
+		$html_text = base64_encode(utf8_decode(str_replace('"', "'", $html_text)));
 		$sql = "INSERT INTO comment (id_user, id_post, html_text) VALUES ($id_user, $id_post, '$html_text')";
 		$query = $conn->query($sql);
 		if ($query->rowCount() > 0) {
