@@ -5,6 +5,7 @@
 		<post id="<?= $post->id ?>"
 		      text="<?= $post->html_text ?>"
 		      created="<?= date("d/m/Y", strtotime($post->created)) ?>"
+		      liked="<?= $post->liked ?>"
 		      n-likes="<?= intval($post->n_likes) ?>"
 		      n-comments="<?= intval($post->n_comments) ?>"
 		      v-bind:user="<?= str_replace('"', "'", json_encode($post->user)) ?>"

@@ -12,12 +12,20 @@ if ($session->logged()) {
 	if ($id_post !== "") {
 		$id_user = $session->user->id;
 		$sql = "INSERT INTO `like` (id_user, id_post) VALUES ($id_user, $id_post)";
-		$query = $conn->query($sql);
-		if ($query->rowCount() > 0) {
-			$out["message"] = "Successful inserted like on post.";
-		} else {
-			$out["error"] = true;
-			$out["message"] = "Error on insert like on post.";
+		try {
+			$query = $conn->query($sql);
+			if ($query->rowCount() > 0) {
+				$out["message"] = "Successful inserted like on post.";
+			} else {
+				$out["error"] = true;
+				$out["message"] = "Error on insert like on post.";
+			}
+		} catch (PDOException $exception) {
+			if (intval($exception->getCode()) === 23000) {
+				$sql = "DELETE L FROM `like` AS L WHERE L.id_user = $id_user AND L.id_post = $id_post";
+				$query = $conn->query($sql);
+				$out["dislike"] = true;
+			}
 		}
 	} else {
 		$out["error"] = true;
