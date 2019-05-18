@@ -21,6 +21,11 @@
 						</div>
 					</div>
 					<div class="form-group">
+						<label class="sr-only" for="photo">Photo Link</label>
+						<input type="text" class="form-control" id="photo" name="photo" placeholder="Link to Your Photo"
+						       v-model="logDetails.photo">
+					</div>
+					<div class="form-group">
 						<label class="sr-only" for="email">Email</label>
 						<input type="email" class="form-control" id="email" name="email" placeholder="Your Mail"
 						       v-model="logDetails.email">

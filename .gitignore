@@ -1,5 +1,11 @@
+### Build Files ###
+/vendors/*
+/vendor/*
+/tmp/*
+/logs/*
+
 ### PhpStorm ###
 /.idea
+/*.iml
 *.iws
-*.iml
 *.ipr

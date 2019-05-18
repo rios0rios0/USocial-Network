@@ -6,8 +6,6 @@ require_once "../../../core/db/DatabaseConnection.php";
 require_once "../../services/UserService.php";
 $session = SessionManagement::getInstance();
 if ($session->logged()) {
-	$conn = DatabaseConnection::getInstance();
-	$out = array("error" => false);
 	//
 	$search = new stdClass();
 	$search->action = isset($_GET["action"]) ? $_GET["action"] : "";

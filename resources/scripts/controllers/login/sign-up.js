@@ -3,7 +3,7 @@ var sign_up = new Vue({
 	data: {
 		successMessage: "",
 		errorMessage: "",
-		logDetails: {first_name: "", last_name: "", email: "", password: "", confirm_password: ""},
+		logDetails: {first_name: "", last_name: "", photo: "", email: "", password: "", confirm_password: ""},
 	},
 	methods: {
 		sign_up: function () {
@@ -24,6 +24,7 @@ var sign_up = new Vue({
 						sign_up.logDetails = {
 							first_name: "",
 							last_name: "",
+							photo: "",
 							email: "",
 							password: "",
 							confirm_password: ""

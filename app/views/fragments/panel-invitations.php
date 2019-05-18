@@ -8,8 +8,8 @@
 			foreach ($this->invitations as $user) {
 				?>
 				<li>
-					<a href="<?= RoutesManagement::base_url() ?>app/controllers/user/index.php?id=<?= $user->id ?>"
-					   class="thumbnail"><img src="<?= RoutesManagement::base_url() ?>resources/images/user.png" alt=""></a>
+					<a href="<?= $user->url ?>"
+					   class="thumbnail"><img src="<?= $user->photo ?>" alt=""></a>
 				</li>
 				<?php
 			}
