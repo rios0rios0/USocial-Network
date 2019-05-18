@@ -2,6 +2,7 @@
 require_once "../../../core/session/SessionManagement.php";
 require_once "../../../core/routes/RoutesManagement.php";
 require_once "../../../core/db/DatabaseConnection.php";
+require_once "../../services/UserService.php";
 $session = SessionManagement::getInstance();
 if ($session->logged()) {
 	$conn = DatabaseConnection::getInstance();
@@ -16,12 +17,12 @@ if ($session->logged()) {
 		$sql = "INSERT INTO comment (id_user, id_post, html_text) VALUES ($id_user, $id_post, '$html_text')";
 		$query = $conn->query($sql);
 		if ($query->rowCount() > 0) {
+			$user_service = new UserService();
+			$user = $user_service->get($id_user);
 			$out["comment"] = (object)array(
 				"user" => array(
-					"url" => RoutesManagement::base_url() . "app/controllers/user/index.php?id=" . $id_user,
-					"image" => array(
-						"url" => RoutesManagement::base_url() . "resources/images/user.png"
-					)
+					"url" => $user->url,
+					"photo" => $user->photo
 				),
 				"html_text" => $html_text
 			);

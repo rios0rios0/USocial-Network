@@ -64,4 +64,24 @@ class PostService
 		$query = $this->conn->query($sql);
 		return $query->fetchAll(PDO::FETCH_CLASS);
 	}
+
+	public function prepare($posts, $user_service)
+	{
+		foreach ($posts as $k1 => $v1) {
+			$posts[$k1]->photo = $this->get_photo($posts[$k1]->photo);
+			$posts[$k1]->user = $user_service->get($v1->id_user);
+			$comments = $this->list_comments($v1->id);
+			foreach ($comments as $k2 => $v2) {
+				$comments[$k2]->user = $user_service->get($v2->id_user);
+			}
+			$posts[$k1]->comments = $comments;
+		}
+		return $posts;
+	}
+
+	private function get_photo($abs_path)
+	{
+		return ((!is_null($abs_path) && getimagesize($abs_path))
+			? $abs_path : (RoutesManagement::base_url() . "resources/images/post.png"));
+	}
 }

@@ -20,7 +20,7 @@
 				?>
 				<div class="row user-row text-center">
 					<div class="col-md-3">
-						<img src="<?= RoutesManagement::base_url() ?>resources/images/user.png" class="img-thumbnail" alt="">
+						<img src="<?= $user->photo ?>" class="img-thumbnail" alt="">
 						<div class="text-center">
 							<?= $user->username ?>
 							<?php
@@ -54,7 +54,7 @@
 						?>
 						<div class="col-md-3 col-centered">
 							<p>
-								<a href="<?= RoutesManagement::base_url() ?>app/controllers/user/index.php?id=<?= $user->id ?>"
+								<a href="<?= $user->url ?>"
 								   class="btn btn-primary btn-block"><i class="fa fa-edit"></i> View Profile</a>
 							</p>
 						</div>

@@ -20,7 +20,7 @@ class UserService
 				FROM user AS U
 				WHERE U.id = $id";
 		$query = $this->conn->query($sql);
-		return $query->fetchObject();
+		return $this->prepare($query->fetchObject());
 	}
 
 	public function list($id_user_exclude, $extra_condition)
@@ -44,7 +44,7 @@ class UserService
 					$extra_condition
 				ORDER BY U.username ASC";
 		$query = $this->conn->query($sql);
-		return $query->fetchAll(PDO::FETCH_CLASS);
+		return $this->prepare($query->fetchAll(PDO::FETCH_CLASS));
 	}
 
 	public function list_friends($id_user, $friend = 1, $limit = null)
@@ -72,6 +72,29 @@ class UserService
 				ORDER BY U.username ASC
 				$limit";
 		$query = $this->conn->query($sql);
-		return $query->fetchAll(PDO::FETCH_CLASS);
+		return $this->prepare($query->fetchAll(PDO::FETCH_CLASS));
+	}
+
+	private function prepare($users)
+	{
+		$url = RoutesManagement::base_url() . "app/controllers/user/index.php?id=";
+		if (is_array($users)) {
+			foreach ($users as $key => $value) {
+				$users[$key]->photo = $this->get_photo($value->photo);
+				$users[$key]->url = $url . $value->id;
+			}
+		} else {
+			if (!is_null($users)) {
+				$users->photo = $this->get_photo($users->photo);
+				$users->url = $url . $users->id;
+			}
+		}
+		return $users;
+	}
+
+	public function get_photo($abs_path)
+	{
+		return ((!is_null($abs_path) && getimagesize($abs_path))
+			? $abs_path : (RoutesManagement::base_url() . "resources/images/user.png"));
 	}
 }

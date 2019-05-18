@@ -19,6 +19,7 @@ let Posts = new Vue({
 				"id": Number,
 				"text": String,
 				"created": String,
+				"photo": String,
 				"liked": Boolean,
 				"nLikes": Number,
 				"nComments": Number,
@@ -33,7 +34,7 @@ let Posts = new Vue({
 				"       <div class='row'>" +
 				"           <div class='col-sm-2'>" +
 				"	            <a v-bind:href='user.url' class='post-avatar thumbnail'>" +
-				"                   <img v-bind:src='user.image.url' alt=''>" +
+				"                   <img v-bind:src='user.photo' alt=''>" +
 				"                   <div class='text-center'>{{ user.username }}</div></a>" +
 				"	            <p class='text-center'>{{ created }}</p>" +
 				"	            <div class='likes text-center'>{{ nLikes }} Like{{ (!!(nLikes > 1) ? 's' : '') }}</div>" +
@@ -42,7 +43,9 @@ let Posts = new Vue({
 				"           <div class='col-sm-10'>" +
 				"               <div class='bubble'>" +
 				"                   <div class='pointer'><p v-html='text'></p></div>" +
-				"                   <div class='pointer-border'></div>" +
+				"                   <div class='pointer-border text-center'>" +
+				"                       <img v-bind:src='photo' class='post-img' alt=''>" +
+				"                   </div>" +
 				"               </div>" +
 				"               <p class='post-actions'>" +
 				"                   <a v-if='canLike' @click.prevent='like_post({ id })' v-html='render_like_text()' href='#'></a>" +
@@ -59,7 +62,7 @@ let Posts = new Vue({
 				"               <div class='comments'>" +
 				"                   <div v-for='comment in comments' class='comment'>" +
 				"                       <a v-bind:href='comment.user.url' class='comment-avatar pull-left'>" +
-				"                           <img v-bind:src='comment.user.image.url' alt=''></a>" +
+				"                           <img v-bind:src='comment.user.photo' alt=''></a>" +
 				"                       <div class='comment-text'><p v-html='render_html(comment.html_text)'></p></div>" +
 				"                   </div>" +
 				"                   <div class='clearfix'></div>" +
@@ -100,7 +103,7 @@ let Posts = new Vue({
 							} else {
 								Posts.clearMessage();
 								self.nComments++;
-								self.comments.push(response.data.comment);
+								self.comments.unshift(response.data.comment);
 								self.comment_form = {html_text: ""};
 							}
 						});
