@@ -17,7 +17,7 @@ class ViewsManagement
 
 	public function __construct()
 	{
-		$this->root = $_SERVER["DOCUMENT_ROOT"] . "/USocial-Network";
+		$this->root = $_SERVER["DOCUMENT_ROOT"] . RoutesManagement::$app;
 		$this->header = $this->root . $this->header;
 		$this->footer = $this->root . $this->footer;
 		$this->content = $this->root . $this->content;
@@ -30,7 +30,7 @@ class ViewsManagement
 		if (file_exists($abs)) {
 			$this->$fragment = $abs;
 		} else {
-			throw new Exception("No layout file present in path " . $path);
+			throw new Exception("No layout file present in path " . $abs);
 		}
 	}
 

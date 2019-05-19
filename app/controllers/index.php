@@ -1,7 +1,7 @@
 <?php
-require_once "../../core/views/ViewsManagement.php";
 require_once "../../core/session/SessionManagement.php";
 require_once "../../core/routes/RoutesManagement.php";
+require_once "../../core/views/ViewsManagement.php";
 $session = SessionManagement::getInstance();
 if (!$session->logged()) {
 	$vm = new ViewsManagement();
